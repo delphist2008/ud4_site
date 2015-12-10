@@ -101,48 +101,27 @@ h1 {
   position: absolute;
   height: 100%;
   width: 100%;
+  left: 30px;
 }
 
-.top {
-  overflow: hidden;
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  right: 30px;
-  bottom: 0%;
-  border: 1px rgba(255, 255, 255, 0.2) solid;
-  border-width: 1px 1px 0 1px;
-}
+
 
 .homeSlide {
   position: absolute;
-  width: 100%;
+  width: 80%;
   height: 100%;
+  border: 2px solid black;
 }
-.homeSlide.slide01 {
-  background: url(../img/img_clouds-top.jpg) no-repeat bottom center;
-  background-size: cover;
+.slideImg
+{
+	background: url(../img/1.jpg) no-repeat bottom center;
+	  background-size: cover;
+	  width:100px;
+	  height:100px;
+	  background-position: 0px 0px;
 }
-.bottom .homeSlide.slide01 {
-  background: url(../img/img_clouds-bottom.jpg) no-repeat top center;
-  background-size: cover;
-}
-.homeSlide.slide02 {
-  background: url(../img/img_clouds-top2.jpg) no-repeat bottom center;
-  background-size: cover;
-}
-.bottom .homeSlide.slide02 {
-  background: url(../img/img_clouds-bottom2.jpg) no-repeat top center;
-  background-size: cover;
-}
-.homeSlide.slide03 {
-  background: url(../img/img_clouds-top3.jpg) no-repeat bottom center;
-  background-size: cover;
-}
-.bottom .homeSlide.slide03 {
-  background: url(../img/img_clouds-bottom3.jpg) no-repeat top center;
-  background-size: cover;
-}
+
+
 
 .divider {
   z-index: 3;
