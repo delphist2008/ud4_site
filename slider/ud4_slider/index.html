@@ -1,0 +1,107 @@
+<!doctype html>
+
+    <head>
+        <meta charset="utf-8">
+  
+        <title>slider prototype</title>
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+        <style type="text/css">
+            #carbonads-container {
+                position: fixed;
+                bottom: 50px;
+                right: 50px;
+                z-index: 1000000;
+                display: none;
+            }
+            #carbonads-container img,
+            #carbonads-container a {
+                display: block;
+            }
+            @media only screen and (min-width: 800px) {
+                #carbonads-container {
+                    display: block;
+                }
+            }
+        </style>
+
+    </head>
+    <body>
+        
+
+        <div class="bcg">
+          <div class="hero">
+            
+           
+              <div class="homeSlide slide01 active">
+                <h1>1</h1>
+              </div>
+              
+              <div class="homeSlide slide02">
+                <h1>2</h1>
+              </div>
+             
+              <div class="homeSlide slide03">
+                <h1>3</h1>
+              </div>
+			  
+			  <div class="homeSlide slide01 active">
+                <h1>4</h1>
+              </div>
+              
+              <div class="homeSlide slide02">
+                <h1>5</h1>
+              </div>
+             
+              <div class="homeSlide slide03">
+                <h1>6</h1>
+              </div>
+			  
+			  <div class="homeSlide slide01 active">
+                <h1>7</h1>
+              </div>
+              
+              <div class="homeSlide slide02">
+                <h1>8</h1>
+              </div>
+             
+              <div class="homeSlide slide03">
+                <h1>9</h1>
+              </div>
+              
+          </div>
+          
+          <!-- Prev/Next Navigation -->
+          <div id="slideNav">
+            <ul>
+              <li class="slideNavPrev">
+                <a href="#" title="Go to previous slide">
+                  <span class="ico ico-up">↓</span>
+                </a>
+              </li>
+              <li class="slideNavNext">
+                <a href="#" title="Go to next slide">
+                  <span class="ico ico-down">↑</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+        </div>
+
+
+
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/greensock/TweenLite.js"></script>
+        <script src="js/vendor/greensock/TimelineLite.js"></script>
+        <script src="js/vendor/greensock/plugins/CSSPlugin.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+
+    </body>
+</html>

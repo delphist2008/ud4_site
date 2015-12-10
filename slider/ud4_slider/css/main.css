@@ -1,0 +1,349 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+  font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #222222;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+/* Our CSS will go here */
+.logo {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 6;
+  opacity: 0.3;
+}
+
+.bcg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+h1 {
+  color: #ffffff;
+  font-weight: 300;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  margin: 0 0 20px 0;
+  font-size: 60px;
+  text-align: center;
+}
+
+.hero {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.top {
+  overflow: hidden;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  right: 30px;
+  bottom: 0%;
+  border: 1px rgba(255, 255, 255, 0.2) solid;
+  border-width: 1px 1px 0 1px;
+}
+
+.homeSlide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.homeSlide.slide01 {
+  background: url(../img/img_clouds-top.jpg) no-repeat bottom center;
+  background-size: cover;
+}
+.bottom .homeSlide.slide01 {
+  background: url(../img/img_clouds-bottom.jpg) no-repeat top center;
+  background-size: cover;
+}
+.homeSlide.slide02 {
+  background: url(../img/img_clouds-top2.jpg) no-repeat bottom center;
+  background-size: cover;
+}
+.bottom .homeSlide.slide02 {
+  background: url(../img/img_clouds-bottom2.jpg) no-repeat top center;
+  background-size: cover;
+}
+.homeSlide.slide03 {
+  background: url(../img/img_clouds-top3.jpg) no-repeat bottom center;
+  background-size: cover;
+}
+.bottom .homeSlide.slide03 {
+  background: url(../img/img_clouds-bottom3.jpg) no-repeat top center;
+  background-size: cover;
+}
+
+.divider {
+  z-index: 3;
+  position: fixed;
+  top: 50%;
+  margin-top: -40px;
+  left: -200px;
+  right: -200px;
+  height: 40px;
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(34, 34, 34, 0) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(34, 34, 34, 0) 100%);
+}
+
+.bottom {
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+  border: 1px rgba(255, 255, 255, 0.2) solid;
+  border-width: 0 1px 1px 1px;
+}
+.bottom p {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 300;
+  opacity: 0.7;
+  text-align: center;
+}
+.bottom a {
+  color: #fff;
+}
+
+#slideNav {
+  z-index: 5;
+  position: fixed;
+  right: 50px;
+  top: 50%;
+  width: 50px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+#slideNav ul {
+  list-style: none;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#slideNav li {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 1px;
+}
+
+#slideNav a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
