@@ -72,7 +72,11 @@ right: 0;
    left: 50%;
    top: 50%;
    -moz-transform: translateY(-50%) translateX(-50%);
-
+-ms-transform: translateY(-50%) translateX(-50%);
+-webkit-transform: translateY(-50%) translateX(-50%);
+-o-transform: translateY(-50%) translateX(-50%);
+ -moz-transform: translateY(-50%) translateX(-50%);
+ transform: translateY(-50%) translateX(-50%);
 	
 }
 .caseInfo

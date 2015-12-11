@@ -8,7 +8,7 @@
 
 //TODO: random/not random navigation
 //TODO: mouse scroll sliding
-//TODO: slideImg css transform multibrowser
+
 
 //NOTE: mouse event forwarding for IE<11 instead of pointer-events:none
 
