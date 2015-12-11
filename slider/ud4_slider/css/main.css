@@ -57,26 +57,15 @@ textarea {
    ========================================================================== */
 
 body {
-  font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
-  background-color: #ffffff;
+
+  background-color: rgb(80,80,100);
   color: #222222;
 }
 
-h1, h2, h3, h4 {
-  font-weight: 700;
-}
 
-/* Our CSS will go here */
-.logo {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-  z-index: 6;
-  opacity: 0.3;
-}
+
+
+
 
 .bcg {
   position: fixed;
@@ -86,16 +75,8 @@ h1, h2, h3, h4 {
   bottom: 0;
 }
 
-h1 {
-  color: #ffffff;
-  font-weight: 300;
-  position: absolute;
-  bottom: 0%;
-  width: 100%;
-  margin: 0 0 20px 0;
-  font-size: 60px;
-  text-align: center;
-}
+
+
 
 .hero {
   position: absolute;
@@ -104,13 +85,17 @@ h1 {
   left: 30px;
 }
 
-
-
 .homeSlide {
   position: absolute;
   width: 80%;
-  height: 100%;
-  border: 2px solid black;
+  height: 80%;
+  top:10%;
+
+ 
+  background-color: rgb(106,114,123);
+  background-image: url(../img/glass.png);
+  box-shadow: 0px 0px 1px 1px white;
+  background-size: 100% 100%;
 }
 .slideImg
 {
@@ -123,38 +108,7 @@ h1 {
 
 
 
-.divider {
-  z-index: 3;
-  position: fixed;
-  top: 50%;
-  margin-top: -40px;
-  left: -200px;
-  right: -200px;
-  height: 40px;
-  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(34, 34, 34, 0) 100%);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(34, 34, 34, 0) 100%);
-}
 
-.bottom {
-  overflow: hidden;
-  position: absolute;
-  top: 50%;
-  left: 30px;
-  right: 30px;
-  bottom: 30px;
-  border: 1px rgba(255, 255, 255, 0.2) solid;
-  border-width: 0 1px 1px 1px;
-}
-.bottom p {
-  font-size: 20px;
-  color: #ffffff;
-  font-weight: 300;
-  opacity: 0.7;
-  text-align: center;
-}
-.bottom a {
-  color: #fff;
-}
 
 #slideNav {
   z-index: 5;
