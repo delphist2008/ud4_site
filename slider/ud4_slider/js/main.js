@@ -1,12 +1,13 @@
 (function($) {
 
 
-//FIXME: prevent slide changing during animation
+
 //FIXME: navigation buttons size & transparency  changes
 //TODO: proper layout for slide
 //TODO: mousemove
 //TODO: full info panel
 //TODO: random/not random navigation
+//TODO: mouse scroll sliding
 
 function getRandomInt(min, max)
 {
@@ -22,41 +23,27 @@ var $activeSlide = $(".active"),
     $slideNavNextA = $(".slideNavNext a"),
     $hero = $(".hero");
 
-	 animation = {inProgress : false};
+	animation = {inProgress : false, transitionTime: .8};
 	
 
-		// Mouse move tilt effect
-	$(".slideImg").mousemove(function(event){
-	  
-		// Detect mouse position
-		var xPos = ((event.clientX/$(window).width())-0.5)*(-90);
-		var yPos = ((event.clientY/$(window).height())-0.5)*(-90);
-
-		//TweenLite.to($(".slideImg"), 0.6, { backgroundPosition:"xPos  yPos", ease:Power1.easeOut});
-
-
+	
+	$(".imageContainer").mousemove(function(event){
+		var xPos = event.clientX;//((event.clientX/event.currentTarget.clientWidth)-0.5).toFixed(2);
+		var yPos = ((event.clientY/event.currentTarget.clientHeight)-0.5).toFixed(2);
+		$(".dbgstr")[0].innerHTML =  xPos.toFixed(2);
+		//TweenLite.to(event.currentTarget, 0.6, { backgroundPosition:xPos + "px " + yPos + "px", ease:Power1.easeOut});
 	});
 	
-
-	// Init function that run on page load
 	function init(){
-
-	  // Hide all slides apart from the active one
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
-
-	  // Disable arrow down on page load
-	  //TweenLite.set($slideNavPrev, {autoAlpha: 0.2});
-	  
 	}
 
-	// Run Init function
 	init();
-
 
 	function goToNextSlide(slideOut, slideIn){
 		animation.inProgress = true;
 		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to($(".homeSlide"), 0.5, {x: '+=30px', ease:Power1.easeInOut}, 0));
+		tl1.append(new TweenLite.to($(".homeSlide"), animation.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
 		
 		var tl = new TimelineMax({onComplete: function (){animation.inProgress = false;}}),
 	    size = $('.homeSlide').length;
@@ -64,18 +51,13 @@ var $activeSlide = $(".active"),
 			tl
 				.set(slideIn, {y:"110%",className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn, 1, {y: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
-				.to(slideOut, 1, {y: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
+				.to(slideIn, animation.transitionTime, {y: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideOut, animation.transitionTime, {y: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 				
 		} 
-		//TweenLite.set($slideNavPrev, {autoAlpha: 1});
-		//if(index === size){
-		//  TweenLite.to($slideNavNext, 0.3, {autoAlpha: 0.2, ease:Linear.easeNone});
-		//}
-	  
 	}
 
-	// Navigation click - go to the Next Slide
+
 	$slideNavNext.click(function (e) {
 	  e.preventDefault();
 	  
@@ -93,7 +75,7 @@ var $activeSlide = $(".active"),
 	function goToPreviousSlide(slideOut, slideIn){
 	  animation.inProgress = true;
 	  var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to($(".homeSlide"), 0.5, {x: '-=30px', ease:Power1.easeInOut}, 0));
+		tl1.append(new TweenLite.to($(".homeSlide"), animation.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
 		
 	  var tl = new TimelineLite({onComplete: function (){animation.inProgress = false;}}),
 	    size = $('.top .homeSlide').length;
@@ -102,19 +84,11 @@ var $activeSlide = $(".active"),
 	    tl
 			.set(slideIn, {y:"-110%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn, 1, {y: '+=110%', autoAlpha: 1,ease:Power3.easeInOut}, 0)
-			.to(slideOut, 1, {y: '+=110%', autoAlpha: 0, ease:Power3.easeInOut}, 0);
+			.to(slideIn, animation.transitionTime, {y: '+=110%', autoAlpha: 1,ease:Power3.easeInOut}, 0)
+			.to(slideOut, animation.transitionTime, {y: '+=110%', autoAlpha: 0, ease:Power3.easeInOut}, 0);
 	  } 
-
-	 // TweenLite.set($slideNavNext, {autoAlpha: 1});
-	  
-	 // if(index === 1){
-	  //  TweenLite.to($slideNavPrev, 0.3, {autoAlpha: 0.2, ease:Linear.easeNone});
-	 // }
-	  
 	}
 	 
-	// Navigation click - go to the Prev Slide
 	$slideNavPrev.click(function (e) {
 	  e.preventDefault();
 	  if (!animation.inProgress)
