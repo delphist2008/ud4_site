@@ -8,6 +8,7 @@
 //TODO: full info panel
 //TODO: random/not random navigation
 //TODO: mouse scroll sliding
+//TODO: img css multibrowser fix
 
 function getRandomInt(min, max)
 {
@@ -28,10 +29,9 @@ var $activeSlide = $(".active"),
 
 	
 	$(".imageContainer").mousemove(function(event){
-		var xPos = event.clientX;//((event.clientX/event.currentTarget.clientWidth)-0.5).toFixed(2);
-		var yPos = ((event.clientY/event.currentTarget.clientHeight)-0.5).toFixed(2);
-		$(".dbgstr")[0].innerHTML =  xPos.toFixed(2);
-		//TweenLite.to(event.currentTarget, 0.6, { backgroundPosition:xPos + "px " + yPos + "px", ease:Power1.easeOut});
+		var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
+		var yPos = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*3.0) - 50;
+		TweenLite.to(event.currentTarget.firstElementChild, 0.6, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
 	});
 	
 	function init(){
