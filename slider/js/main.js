@@ -1,7 +1,6 @@
 (function($) {
 
-//TODO: random/not random navigation
-//NOTE: mouse event forwarding for IE<11 instead of pointer-events:none
+
 
 function getRandomInt(min, max)
 {
@@ -20,7 +19,7 @@ var $activeSlide = $(".active"),
     $slideNavNext = $("#slideNavNext")
     $hero = $(".hero");
 
-	animator = {inProgress : false, transitionTime: .8, state:"case"};
+	animator = {inProgress : false, transitionTime: .8, state:"case", autoslide: true};
 	
 
 	//fix for browsers without pointer-events support
@@ -51,8 +50,10 @@ var $activeSlide = $(".active"),
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
 	  TweenLite.set($fullInfo, {autoAlpha: 0});
 	  var _width = $bcg.width()*0.9 + "px";
-	   TweenLite.set($fullInfo, {width: _width});
+	  TweenLite.set($fullInfo, {width: _width});
 	  TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
+	 // var tl1 = new TimelineMax({ repeat:-1, onRepeat: function () { getRandomSlide("up");}});
+	//	tl1.to($("#nothing"), 2, {width:"100px"});
 	}
 
 	init();
@@ -95,8 +96,8 @@ var $activeSlide = $(".active"),
 
 	function goToNextSlide(slideOut, slideIn){
 		animator.inProgress = true;
-		//var tl1 = new TimelineMax({repeat:1, yoyo:true});
-			//tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
+		var tl1 = new TimelineMax({repeat:1, yoyo:true});
+			tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(slideIn, {y:"110%", className: '+=active'})
@@ -107,8 +108,8 @@ var $activeSlide = $(".active"),
 
 	function goToPreviousSlide(slideOut, slideIn){
 	  animator.inProgress = true;
-	//  var tl1 = new TimelineMax({repeat:1, yoyo:true});
-	//	tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
+	  var tl1 = new TimelineMax({repeat:1, yoyo:true});
+		tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
 	  var tl = new TimelineLite({onComplete: function (){animator.inProgress = false;}});
 	    tl
 			.set(slideIn, {y:"-110%",className: '+=active'})
@@ -119,11 +120,11 @@ var $activeSlide = $(".active"),
 	};
 	 
 	$slideNavNext.click(function (e) {
-		getRandomSlide("down");
+		getDirectSlide("down");
 	});
 	
 	$slideNavPrev.click(function (e) {
-	  getRandomSlide("up");
+	 getDirectSlide("up");
 	});
 	
 	function getRandomSlide(direction)
@@ -137,6 +138,31 @@ var $activeSlide = $(".active"),
 	  goToNextSlide(slideOut, slideIn);
 	if (direction == "up")
 	  goToPreviousSlide(slideOut, slideIn);
+	  };
+	};
+	
+	function getDirectSlide(direction)
+	{
+	if (!animator.inProgress)
+	  {
+	var slideOut = $('.homeSlide.active'),
+		slideIn = $('.homeSlide');
+		
+		if (direction == "down")
+		{
+		if (slideIn.index(slideOut)  <  slideIn.length-1)
+			 goToNextSlide(slideOut, slideOut.next(".homeSlide")[0])
+		else
+			goToNextSlide(slideOut, slideIn[0]);
+		};
+		
+		if (direction == "up")
+		{
+		if (slideIn.index(slideOut)  >  0)
+			 goToPreviousSlide(slideOut, slideOut.prev(".homeSlide")[0])
+		else
+			goToPreviousSlide(slideOut, slideIn[slideIn.length-1]);
+		};
 	  };
 	};
 	
@@ -160,9 +186,9 @@ var $activeSlide = $(".active"),
 		if (animator.state == "case")
 		{
 		if (event.deltaY < 0)
-			getRandomSlide("up")
+			getDirectSlide("up")
 		else
-			getRandomSlide("down");
+			getDirectSlide("down");
 		}
 	});
 
