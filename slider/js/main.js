@@ -1,15 +1,6 @@
 (function($) {
 
-
-//TODO: full info panel
-
-
-//FIXME: navigation buttons size & transparency  changes
-
 //TODO: random/not random navigation
-//TODO: mouse scroll sliding
-
-
 //NOTE: mouse event forwarding for IE<11 instead of pointer-events:none
 
 function getRandomInt(min, max)
@@ -20,7 +11,7 @@ function getRandomInt(min, max)
 
 var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
-	 $bcg = $(".bcg"),
+	$bcg = $(".bcg"),
 	$fullInfo = $(".caseFullInfo"),
 	$showInfo = $(".showInfo"),
 	$closeInfo = $(".closeInfo"),
@@ -29,7 +20,7 @@ var $activeSlide = $(".active"),
     $slideNavNext = $("#slideNavNext")
     $hero = $(".hero");
 
-	animation = {inProgress : false, transitionTime: .8};
+	animator = {inProgress : false, transitionTime: .8, state:"case"};
 	
 
 	//fix for browsers without pointer-events support
@@ -68,98 +59,86 @@ var $activeSlide = $(".active"),
 
 	
 	function showFullInfo(slide, info){
-		animation.inProgress = true;
+		animator.inProgress = true;
+		animator.state = "full";
 		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to(slide, animation.transitionTime/2.0, {y: '+=30px', ease:Power1.easeInOut}, 0));
+		tl1.append(new TweenLite.to(slide, animator.transitionTime/2.0, {y: '+=30px', ease:Power1.easeInOut}, 0));
 		
-		var tl = new TimelineMax({onComplete: function (){animation.inProgress = false;}});
+		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(info, {x:"-110%",className: '+=active'})
 				.set(slide, {className: '-=active'})
-				.set($bcg, {overflowY:"visible", delay:animation.transitionTime})
-				.to($slideNav, animation.transitionTime, {autoAlpha: 0, x:"+=110%", rotation:"+=90deg", ease:Power2.easeInOut},0)
-				.to(slide, animation.transitionTime, {x: '+=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
-				.to(info, animation.transitionTime, {x: '+=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
+				.set($bcg, {overflowY:"auto", delay:animator.transitionTime})
+				.to($slideNav, animator.transitionTime, {autoAlpha: 0, x:"+=110%", rotation:"+=90deg", ease:Power2.easeInOut},0)
+				.to(slide, animator.transitionTime, {x: '+=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
+				.to(info, animator.transitionTime, {x: '+=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
 				
 		
 	};
 	function showCaseInfo(info, _case){
-		animation.inProgress = true;
+		animator.inProgress = true;
+		animator.state = "case";
 		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to(_case, animation.transitionTime/2.0, {x: '-=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
+		tl1.append(new TweenLite.to(_case, animator.transitionTime/2.0, {x: '-=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
 		
-		var tl = new TimelineMax({onComplete: function (){animation.inProgress = false;}});
+		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(_case, {x:"+110%",className: '+=active'})
 				.set(info, {className: '-=active'})
 				.set($bcg, {overflowY:"hidden"})
-				.to($slideNav, animation.transitionTime, {autoAlpha: 1, x:"-=110%", rotation:"-=90deg", ease:Power2.easeInOut},0)
-				.to(info, animation.transitionTime, {x: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
-				.to(_case, animation.transitionTime, {x: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
+				.to($slideNav, animator.transitionTime, {autoAlpha: 1, x:"-=110%", rotation:"-=90deg", ease:Power2.easeInOut},0)
+				.to(info, animator.transitionTime, {x: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
+				.to(_case, animator.transitionTime, {x: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
 				
 		
 	};
 
 	function goToNextSlide(slideOut, slideIn){
-		animation.inProgress = true;
-		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to($(".homeSlide"), animation.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
-		
-		var tl = new TimelineMax({onComplete: function (){animation.inProgress = false;}}),
-	    size = $('.homeSlide').length;
-		if(slideIn.length !== 0){
+		animator.inProgress = true;
+		//var tl1 = new TimelineMax({repeat:1, yoyo:true});
+			//tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
+		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
-				.set(slideIn, {y:"110%",className: '+=active'})
+				.set(slideIn, {y:"110%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn, animation.transitionTime, {y: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
-				.to(slideOut, animation.transitionTime, {y: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
-				
-		} 
-	}
-
-
-	$slideNavNext.click(function (e) {
-	  e.preventDefault();
-	  
-	 if (!animation.inProgress)
-	  {
-	  var slideOut = $('.homeSlide.active'),
-		   slideIn = $('.homeSlide:not(.active)');
-		  slideIn =  slideIn [getRandomInt(0, slideIn.length-1)];
-	  
-	  goToNextSlide(slideOut, slideIn);
-	  };
-	  
-	});
+				.to(slideIn, animator.transitionTime, {y: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideOut, animator.transitionTime, {y: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
+	};
 
 	function goToPreviousSlide(slideOut, slideIn){
-	  animation.inProgress = true;
-	  var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to($(".homeSlide"), animation.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
-		
-	  var tl = new TimelineLite({onComplete: function (){animation.inProgress = false;}}),
-	    size = $('.top .homeSlide').length;
-	  
-	  if(slideIn.length !== 0){
+	  animator.inProgress = true;
+	//  var tl1 = new TimelineMax({repeat:1, yoyo:true});
+	//	tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
+	  var tl = new TimelineLite({onComplete: function (){animator.inProgress = false;}});
 	    tl
 			.set(slideIn, {y:"-110%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn, animation.transitionTime, {y: '+=110%', autoAlpha: 1,ease:Power3.easeInOut}, 0)
-			.to(slideOut, animation.transitionTime, {y: '+=110%', autoAlpha: 0, ease:Power3.easeInOut}, 0);
-	  } 
-	}
+			.set(slideOut, { y: '-=220%', delay:animator.transitionTime})
+			.to(slideIn, animator.transitionTime, {y: '+=110%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideOut, animator.transitionTime, {y: '+=110%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
+	};
 	 
+	$slideNavNext.click(function (e) {
+		getRandomSlide("down");
+	});
+	
 	$slideNavPrev.click(function (e) {
-	  e.preventDefault();
-	  if (!animation.inProgress)
+	  getRandomSlide("up");
+	});
+	
+	function getRandomSlide(direction)
+	{
+	if (!animator.inProgress)
 	  {
-	  var slideOut = $('.homeSlide.active'),
-	  slideIn = $('.homeSlide:not(.active)');
-		  slideIn =  slideIn [getRandomInt(0, slideIn.length-1)];
+	var slideOut = $('.homeSlide.active'),
+		slideIn = $('.homeSlide:not(.active)');
+		slideIn =  slideIn [getRandomInt(0, slideIn.length-1)];
+	if (direction == "down")
+	  goToNextSlide(slideOut, slideIn);
+	if (direction == "up")
 	  goToPreviousSlide(slideOut, slideIn);
 	  };
-	  
-	});
+	};
 	
 	$showInfo.click(function (e) {
 	  e.preventDefault();
@@ -175,6 +154,16 @@ var $activeSlide = $(".active"),
 	  var $caseSlide  =  $(".homeSlide[case="+$case+"]"); 
 	  var $infoSlide = $(".caseFullInfo[case="+$case+"]");
 	 showCaseInfo( $infoSlide, $caseSlide);
+	});
+	
+	$( "html" ).mousewheel(function(event){
+		if (animator.state == "case")
+		{
+		if (event.deltaY < 0)
+			getRandomSlide("up")
+		else
+			getRandomSlide("down");
+		}
 	});
 
 })(jQuery);
