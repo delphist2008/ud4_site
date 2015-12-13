@@ -20,6 +20,7 @@ function getRandomInt(min, max)
 
 var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
+	 $bcg = $(".bcg"),
 	$fullInfo = $(".caseFullInfo"),
 	$showInfo = $(".showInfo"),
 	$closeInfo = $(".closeInfo"),
@@ -50,9 +51,16 @@ var $activeSlide = $(".active"),
 		TweenLite.to(event.currentTarget.firstElementChild, 0.6, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
 	});
 	
+	$( window ).resize(function()
+	{
+		var _width = $bcg.width()*0.9 + "px";
+	   TweenLite.set($fullInfo, {width: _width});
+	});
 	function init(){
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
 	  TweenLite.set($fullInfo, {autoAlpha: 0});
+	  var _width = $bcg.width()*0.9 + "px";
+	   TweenLite.set($fullInfo, {width: _width});
 	  TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
 	}
 
@@ -68,7 +76,8 @@ var $activeSlide = $(".active"),
 			tl
 				.set(info, {x:"-110%",className: '+=active'})
 				.set(slide, {className: '-=active'})
-				.to($slideNav, animation.transitionTime, {autoAlpha: 0, x:"+=110%", ease:Power2.easeInOut},0)
+				.set($bcg, {overflowY:"visible", delay:animation.transitionTime})
+				.to($slideNav, animation.transitionTime, {autoAlpha: 0, x:"+=110%", rotation:"+=90deg", ease:Power2.easeInOut},0)
 				.to(slide, animation.transitionTime, {x: '+=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
 				.to(info, animation.transitionTime, {x: '+=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
 				
@@ -83,7 +92,8 @@ var $activeSlide = $(".active"),
 			tl
 				.set(_case, {x:"+110%",className: '+=active'})
 				.set(info, {className: '-=active'})
-				.to($slideNav, animation.transitionTime, {autoAlpha: 1, x:"-=110%", ease:Power2.easeInOut},0)
+				.set($bcg, {overflowY:"hidden"})
+				.to($slideNav, animation.transitionTime, {autoAlpha: 1, x:"-=110%", rotation:"-=90deg", ease:Power2.easeInOut},0)
 				.to(info, animation.transitionTime, {x: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
 				.to(_case, animation.transitionTime, {x: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
 				
