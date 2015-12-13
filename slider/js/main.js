@@ -25,15 +25,20 @@ if (!('pointer-events' in document.body.style ))
 {
     //fix for browsers without pointer-events support
 	$(document).on('mousemove', '.caseInfo', function (e) {
-    $(this).hide();
-    var BottomElement = document.elementFromPoint(e.clientX, e.clientY);
-    $(this).show();
-    $(BottomElement).mousedown(); //Manually fire the event for desired underlying element
-    return false;
+		ev = $.Event('mousemove');
+		ev.pageX = e.pageX;
+		ev.pageY = e.pageY;
+	$(this).hide();
+	$(document.elementFromPoint(e.pageX, e.pageY)).trigger(ev);
+	$(this).show();
 	}); 
-}
+	
+	
+};
+
 	
 	$(".imageContainer").mousemove(function(event){
+		
 		var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
 		var yPos = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*3.0) - 50;
 		TweenLite.to(event.currentTarget.firstElementChild, 0.6, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});

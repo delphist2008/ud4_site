@@ -11,8 +11,8 @@ body {
 	bottom: 2%;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0;
-	right: 0;
+	left: 20%;
+	right: 10%;
 	font-family: Tahoma;
 	 text-shadow:
     -2px -2px 0 #222,
@@ -162,9 +162,10 @@ span
 position:absolute;
 top: 0;
 left: 0;
-width: 100%;
+width:90%;
   height: 100%;
-  pointer-events:none;
+ pointer-events: none;
+ 
 
 }
 
