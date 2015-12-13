@@ -19,21 +19,19 @@ var $activeSlide = $(".active"),
     $slideNavNext = $("#slideNavNext")
     $hero = $(".hero");
 
-	animator = {inProgress : false, transitionTime: .8, state:"case", autoslide: true};
+	animator = {inProgress : false, transitionTime: .4, state:"case", autoslide: true};
 	
-
-	//fix for browsers without pointer-events support
-	/*$(document).on('mousemove', '.caseInfo', function (e) {
-
+if (!('pointer-events' in document.body.style )) 
+{
+    //fix for browsers without pointer-events support
+	$(document).on('mousemove', '.caseInfo', function (e) {
     $(this).hide();
     var BottomElement = document.elementFromPoint(e.clientX, e.clientY);
     $(this).show();
     $(BottomElement).mousedown(); //Manually fire the event for desired underlying element
-
     return false;
-
-	});*/ 
-	
+	}); 
+}
 	
 	$(".imageContainer").mousemove(function(event){
 		var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
