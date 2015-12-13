@@ -17,9 +17,11 @@ var $activeSlide = $(".active"),
 	$slideNav = $(".slideNav"),
     $slideNavPrev = $("#slideNavPrev"),
     $slideNavNext = $("#slideNavNext")
-    $hero = $(".hero");
+    $hero = $(".hero"),
+	$randomTimeLine = new TimelineMax({ repeat:-1, onRepeat: function () { getRandomSlide("up");}});
+	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 
-	animator = {inProgress : false, transitionTime: .4, state:"case", autoslide: true};
+	animator = {inProgress : false, transitionTime: .8, state:"case", autoslide: true};
 	
 if (!('pointer-events' in document.body.style )) 
 {
@@ -32,8 +34,6 @@ if (!('pointer-events' in document.body.style ))
 	$(document.elementFromPoint(e.pageX, e.pageY)).trigger(ev);
 	$(this).show();
 	}); 
-	
-	
 };
 
 	
@@ -55,8 +55,7 @@ if (!('pointer-events' in document.body.style ))
 	  var _width = $bcg.width()*0.9 + "px";
 	  TweenLite.set($fullInfo, {width: _width});
 	  TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
-	 // var tl1 = new TimelineMax({ repeat:-1, onRepeat: function () { getRandomSlide("up");}});
-	//	tl1.to($("#nothing"), 2, {width:"100px"});
+	  
 	}
 
 	init();
@@ -73,7 +72,7 @@ if (!('pointer-events' in document.body.style ))
 				.set(info, {x:"-110%",className: '+=active'})
 				.set(slide, {className: '-=active'})
 				.set($bcg, {overflowY:"auto", delay:animator.transitionTime})
-				.to($slideNav, animator.transitionTime, {autoAlpha: 0, x:"+=110%", rotation:"+=90deg", ease:Power2.easeInOut},0)
+				.to($slideNav, animator.transitionTime, {autoAlpha: 0, x:"+=110%", rotation:"+=180deg", ease:Power2.easeInOut},0)
 				.to(slide, animator.transitionTime, {x: '+=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
 				.to(info, animator.transitionTime, {x: '+=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
 				
@@ -82,15 +81,16 @@ if (!('pointer-events' in document.body.style ))
 	function showCaseInfo(info, _case){
 		animator.inProgress = true;
 		animator.state = "case";
+		$randomTimeLine.restart();
 		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to(_case, animator.transitionTime/2.0, {x: '-=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
+		tl1.append(new TweenLite.to(_case, animator.transitionTime/2.0, {x: '+=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
 		
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(_case, {x:"+110%",className: '+=active'})
 				.set(info, {className: '-=active'})
 				.set($bcg, {overflowY:"hidden"})
-				.to($slideNav, animator.transitionTime, {autoAlpha: 1, x:"-=110%", rotation:"-=90deg", ease:Power2.easeInOut},0)
+				.to($slideNav, animator.transitionTime, {autoAlpha: 1, x:"-=110%", rotation:"+=180deg", ease:Power2.easeInOut},0)
 				.to(info, animator.transitionTime, {x: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
 				.to(_case, animator.transitionTime, {x: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
 				
@@ -99,6 +99,7 @@ if (!('pointer-events' in document.body.style ))
 
 	function goToNextSlide(slideOut, slideIn){
 		animator.inProgress = true;
+		$randomTimeLine.restart();
 		var tl1 = new TimelineMax({repeat:1, yoyo:true});
 			tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
@@ -111,9 +112,10 @@ if (!('pointer-events' in document.body.style ))
 
 	function goToPreviousSlide(slideOut, slideIn){
 	  animator.inProgress = true;
+	  $randomTimeLine.restart();
 	  var tl1 = new TimelineMax({repeat:1, yoyo:true});
 		tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
-	  var tl = new TimelineLite({onComplete: function (){animator.inProgress = false;}});
+	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
 			.set(slideIn, {y:"-110%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
