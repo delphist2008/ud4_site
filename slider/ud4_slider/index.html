@@ -1,76 +1,82 @@
-<!doctype html>
-
-    <head>
-        <meta charset="utf-8">
-        <title>slider prototype</title>
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-        
-
-        <div class="bcg">
-          <div class="hero">
-            
-              <div class="homeSlide slide01 active">
-			  <div class = "imageContainer">
-				<img src="img/1.jpg" class="slideImg" ></img>
-			  </div>
-			  <div class = "caseInfo">
-			  <div class = "caseText">
-                <h1>Фиговина</h1>
-				</div>
-				</div>
-              </div>
-              
-              <div class="homeSlide slide02">
-			 <div class = "imageContainer">
-				<img src="img/2.jpg" class="slideImg" ></img>
-			  </div>
-                <div class = "caseInfo">
-				<div class = "caseText">
-                <h1>Штуковина</h1>
-				</div>
-				</div>
-              </div>
-             
-              <div class="homeSlide slide03">
-			  <div class = "imageContainer">
-				<img src="img/3.jpg" class="slideImg" ></img>
-			  </div>
-                <div class = "caseInfo">
-				<div class = "caseText">
-                <h1>Балдовина</h1>
-				</div>
-				</div>
-              </div>
-			    
-          </div>
-          
-          <!-- Prev/Next Navigation -->
-          <div id="slideNav">
-            <ul>
-              <li class="slideNavPrev">
-                <a href="#" title="Go to previous slide">
-                  <span class="ico ico-up">↓</span>
-                </a>
-              </li>
-              <li class="slideNavNext">
-                <a href="#" title="Go to next slide">
-                  <span class="ico ico-down">↑</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <title>slider prototype</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+  <div class="bcg">
+    <div class="hero">
+      <div class="homeSlide active" case="1">
+        <div class="imageContainer">
+          <img src="img/1.jpg" class="slideImg" />
         </div>
-
-        <script src="js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="js/vendor/greensock/TweenLite.js"></script>
-        <script src="js/vendor/greensock/TimelineLite.js"></script>
-		<script src="js/vendor/greensock/TimelineMax.js"></script>
-		<script src="js/vendor/greensock/easing/EasePack.js"></script>
-        <script src="js/vendor/greensock/plugins/CSSPlugin.js"></script>
-        <script src="js/main.js"></script>
-
-    </body>
+        <div class="showInfo">
+          <span>&gt;</span>
+        </div>
+        <div class="caseInfo">
+          <div class="caseText">
+            <h1>Фиговина</h1>
+          </div>
+        </div>
+      </div>
+      <div class="caseFullInfo" case="1">
+      <div class="closeInfo">
+        <span>X</span>
+      </div>На горе горит костёр</div>
+      <div class="caseFullInfo" case="2">
+      <div class="closeInfo">
+        <span>X</span>
+      </div>Чебурашка</div>
+      <div class="caseFullInfo" case="3">
+      <div class="closeInfo">
+        <span>X</span>
+      </div>Джигурда</div>
+      <div class="homeSlide" case="2">
+        <div class="imageContainer">
+          <img src="img/2.jpg" class="slideImg" />
+        </div>
+        <div class="showInfo">
+          <span>&gt;</span>
+        </div>
+        <div class="caseInfo">
+          <div class="caseText">
+            <h1>Штуковина</h1>
+          </div>
+        </div>
+      </div>
+      <div class="homeSlide" case="3">
+        <div class="imageContainer">
+          <img src="img/3.jpg" class="slideImg" />
+        </div>
+        <div class="showInfo">
+          <span>&gt;</span>
+        </div>
+        <div class="caseInfo">
+          <div class="caseText">
+            <h1>Балдовина</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Prev/Next Navigation -->
+    <div class="slideNav">
+      <div id="slideNavNext" class="slideNavBtn">
+        <span>&and;</span>
+      </div>
+      <div id="slideNavPrev" class="slideNavBtn">
+        <span>&or;</span>
+      </div>
+    </div>
+  </div>
+  <script src="js/vendor/jquery-1.11.2.min.js"></script> 
+  <script src="js/vendor/greensock/TweenLite.js"></script> 
+  <script src="js/vendor/greensock/TimelineLite.js"></script> 
+  <script src="js/vendor/greensock/TimelineMax.js"></script> 
+  <script src="js/vendor/greensock/easing/EasePack.js"></script> 
+  <script src="js/vendor/greensock/plugins/CSSPlugin.js"></script> 
+  <script src="js/main.js"></script></body>
 </html>

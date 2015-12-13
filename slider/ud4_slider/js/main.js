@@ -20,10 +20,12 @@ function getRandomInt(min, max)
 
 var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
-    $slideNavPrev = $(".slideNavPrev"),
-    $slideNavNext = $(".slideNavNext")
-    $slideNavPrevA = $(".slideNavPrev a"),
-    $slideNavNextA = $(".slideNavNext a"),
+	$fullInfo = $(".caseFullInfo"),
+	$showInfo = $(".showInfo"),
+	$closeInfo = $(".closeInfo"),
+	$slideNav = $(".slideNav"),
+    $slideNavPrev = $("#slideNavPrev"),
+    $slideNavNext = $("#slideNavNext")
     $hero = $(".hero");
 
 	animation = {inProgress : false, transitionTime: .8};
@@ -50,10 +52,43 @@ var $activeSlide = $(".active"),
 	
 	function init(){
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
+	  TweenLite.set($fullInfo, {autoAlpha: 0});
 	  TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
 	}
 
 	init();
+
+	
+	function showFullInfo(slide, info){
+		animation.inProgress = true;
+		var tl1 = new TimelineMax({repeat:1, yoyo:true});
+		tl1.append(new TweenLite.to(slide, animation.transitionTime/2.0, {y: '+=30px', ease:Power1.easeInOut}, 0));
+		
+		var tl = new TimelineMax({onComplete: function (){animation.inProgress = false;}});
+			tl
+				.set(info, {x:"-110%",className: '+=active'})
+				.set(slide, {className: '-=active'})
+				.to($slideNav, animation.transitionTime, {autoAlpha: 0, x:"+=110%", ease:Power2.easeInOut},0)
+				.to(slide, animation.transitionTime, {x: '+=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
+				.to(info, animation.transitionTime, {x: '+=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
+				
+		
+	};
+	function showCaseInfo(info, _case){
+		animation.inProgress = true;
+		var tl1 = new TimelineMax({repeat:1, yoyo:true});
+		tl1.append(new TweenLite.to(_case, animation.transitionTime/2.0, {x: '-=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
+		
+		var tl = new TimelineMax({onComplete: function (){animation.inProgress = false;}});
+			tl
+				.set(_case, {x:"+110%",className: '+=active'})
+				.set(info, {className: '-=active'})
+				.to($slideNav, animation.transitionTime, {autoAlpha: 1, x:"-=110%", ease:Power2.easeInOut},0)
+				.to(info, animation.transitionTime, {x: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
+				.to(_case, animation.transitionTime, {x: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
+				
+		
+	};
 
 	function goToNextSlide(slideOut, slideIn){
 		animation.inProgress = true;
@@ -114,6 +149,22 @@ var $activeSlide = $(".active"),
 	  goToPreviousSlide(slideOut, slideIn);
 	  };
 	  
+	});
+	
+	$showInfo.click(function (e) {
+	  e.preventDefault();
+	  var $case = $( this )[0].parentElement.attributes["case"].value;
+	  var $infoSlide = $(".caseFullInfo[case="+$case+"]");
+	  var $slide = $( this )[0].parentElement;
+	 showFullInfo($slide, $infoSlide);
+	});
+	
+	$closeInfo.click(function (e) {
+	  e.preventDefault();
+	  var $case = $( this )[0].parentElement.attributes["case"].value;
+	  var $caseSlide  =  $(".homeSlide[case="+$case+"]"); 
+	  var $infoSlide = $(".caseFullInfo[case="+$case+"]");
+	 showCaseInfo( $infoSlide, $caseSlide);
 	});
 
 })(jQuery);
