@@ -21,7 +21,7 @@ var $activeSlide = $(".active"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, onRepeat: function () { getRandomSlide("up");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 
-	animator = {inProgress : false, transitionTime: .8, state:"case"};
+	animator = {inProgress : false, transitionTime: .4, state:"case"};
 	
 if (!('pointer-events' in document.body.style )) 
 {
@@ -53,9 +53,9 @@ if (!('pointer-events' in document.body.style ))
 	function init(){
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
 	  TweenLite.set($fullInfo, {autoAlpha: 0});
-	  var _width = $bcg.width()/**0.9 */+ "px";
-	  TweenLite.set($fullInfo, {width: _width});
-	  TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
+	//  var _width = $bcg.width()/**0.9 */+ "px";
+	  //TweenLite.set($fullInfo, {width: _width});
+	 // TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
 	  $(".fullInfoContainer").mCustomScrollbar({scrollInertia:50,  theme:"3d-thick"});
 	}
 
@@ -68,8 +68,8 @@ if (!('pointer-events' in document.body.style ))
 		animator.inProgress = true;
 		animator.state = "full";
 		$randomTimeLine.pause();
-		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to(slide, animator.transitionTime/2.0, {y: '+=30px', ease:Power1.easeInOut}, 0));
+		//var tl1 = new TimelineMax({repeat:1, yoyo:true});
+		//tl1.append(new TweenLite.to(slide, animator.transitionTime/2.0, {y: '+=30px', ease:Power1.easeInOut}, 0));
 		
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
@@ -85,8 +85,8 @@ if (!('pointer-events' in document.body.style ))
 		animator.inProgress = true;
 		animator.state = "case";
 		$randomTimeLine.restart();
-		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to(_case, animator.transitionTime/2.0, {x: '+=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
+	//	var tl1 = new TimelineMax({repeat:1, yoyo:true});
+		//tl1.append(new TweenLite.to(_case, animator.transitionTime/2.0, {x: '+=30px', y:'+=10px', ease:Power1.easeInOut}, 0));
 		
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
@@ -102,8 +102,8 @@ if (!('pointer-events' in document.body.style ))
 	function goToNextSlide(slideOut, slideIn){
 		animator.inProgress = true;
 		$randomTimeLine.restart();
-		var tl1 = new TimelineMax({repeat:1, yoyo:true});
-			tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
+	//	var tl1 = new TimelineMax({repeat:1, yoyo:true});
+		//	tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '+=30px', ease:Power1.easeInOut}, 0));
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(slideIn, {y:"110%", className: '+=active'})
@@ -115,8 +115,8 @@ if (!('pointer-events' in document.body.style ))
 	function goToPreviousSlide(slideOut, slideIn){
 	  animator.inProgress = true;
 	  $randomTimeLine.restart();
-	  var tl1 = new TimelineMax({repeat:1, yoyo:true});
-		tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
+	//  var tl1 = new TimelineMax({repeat:1, yoyo:true});
+	//	tl1.append(new TweenLite.to($(".homeSlide"), animator.transitionTime/2.0, {x: '-=30px', ease:Power1.easeInOut}, 0));
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
 			.set(slideIn, {y:"-110%",className: '+=active'})
