@@ -21,7 +21,7 @@ var $activeSlide = $(".active"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, onRepeat: function () { getRandomSlide("up");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 
-	animator = {inProgress : false, transitionTime: .8, state:"case", autoslide: true};
+	animator = {inProgress : false, transitionTime: .8, state:"case"};
 	
 if (!('pointer-events' in document.body.style )) 
 {
@@ -64,6 +64,7 @@ if (!('pointer-events' in document.body.style ))
 	function showFullInfo(slide, info){
 		animator.inProgress = true;
 		animator.state = "full";
+		$randomTimeLine.pause();
 		var tl1 = new TimelineMax({repeat:1, yoyo:true});
 		tl1.append(new TweenLite.to(slide, animator.transitionTime/2.0, {y: '+=30px', ease:Power1.easeInOut}, 0));
 		
