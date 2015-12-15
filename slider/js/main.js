@@ -46,19 +46,22 @@ if (!('pointer-events' in document.body.style ))
 	
 	$( window ).resize(function()
 	{
-		var _width = $bcg.width()*0.9 + "px";
+		var _width = $bcg.width()/**0.9*/ + "px";
 	   TweenLite.set($fullInfo, {width: _width});
 	});
+	 
 	function init(){
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
 	  TweenLite.set($fullInfo, {autoAlpha: 0});
-	  var _width = $bcg.width()*0.9 + "px";
+	  var _width = $bcg.width()/**0.9 */+ "px";
 	  TweenLite.set($fullInfo, {width: _width});
 	  TweenLite.set($(".slideImg"), {x:"-50%", y:"-50%"});
-	  
+	  $(".fullInfoContainer").mCustomScrollbar({scrollInertia:50,  theme:"3d-thick"});
 	}
 
-	init();
+	$(window).load(function(){
+            init();
+        });
 
 	
 	function showFullInfo(slide, info){
@@ -72,7 +75,6 @@ if (!('pointer-events' in document.body.style ))
 			tl
 				.set(info, {x:"-110%",className: '+=active'})
 				.set(slide, {className: '-=active'})
-				.set($bcg, {overflowY:"auto", delay:animator.transitionTime})
 				.to($slideNav, animator.transitionTime, {autoAlpha: 0, x:"+=110%", rotation:"+=180deg", ease:Power2.easeInOut},0)
 				.to(slide, animator.transitionTime, {x: '+=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
 				.to(info, animator.transitionTime, {x: '+=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
@@ -90,7 +92,6 @@ if (!('pointer-events' in document.body.style ))
 			tl
 				.set(_case, {x:"+110%",className: '+=active'})
 				.set(info, {className: '-=active'})
-				.set($bcg, {overflowY:"hidden"})
 				.to($slideNav, animator.transitionTime, {autoAlpha: 1, x:"-=110%", rotation:"+=180deg", ease:Power2.easeInOut},0)
 				.to(info, animator.transitionTime, {x: '-=110%',autoAlpha: 0, ease:Power2.easeInOut}, 0)
 				.to(_case, animator.transitionTime, {x: '-=110%',autoAlpha: 1, ease:Power2.easeInOut}, 0);
