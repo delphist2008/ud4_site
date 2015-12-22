@@ -1,0 +1,87 @@
+body {
+  background-image: url(../img/back.png);
+  color: #222222;
+}
+
+#menu_checkbox:checked ~ #burger
+{
+	background-image: url(../img/cross.png);
+	background-size: 30px;
+	
+}
+
+#burger
+{
+width:	40px;
+height: 40px;
+position: fixed;
+top: 50px;
+right: 50px;
+background-image: url(../img/burger.png);
+background-repeat: no-repeat;
+background-position: center;
+background-size: 40px;
+z-index: 2;
+}
+
+#burger:hover
+{
+	transform: scale(1.1);
+}
+#menu_checkbox
+{
+	position: fixed;
+	top: -1000px;
+	right: -1000px;
+}
+
+
+#menu
+{
+background-color: rgba(240,240,240, 1);
+position: fixed;
+height: 100%;
+right: -31.77%;
+top: 0;
+width: 31.77%;	
+transition: right 0.1s ease-out;
+z-index: 1;
+}
+
+#menu_checkbox:checked ~ #menu
+{
+	right: 0;
+	transition: right 0.1s ease-out;
+	
+}
+
+#footer
+{
+	position: fixed;
+	background-color: rgb(255,255,255);
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	height: 6.64%;
+}
+
+#logo
+{
+	background-image: url(../img/SuperCoolLogo.png);
+	left: 100px;
+	top: 100px;
+	width: 100px;
+	height: 100px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#description
+{
+background-color: rgba(255,255,255, 0.75);
+position: fixed;
+height: 93.36%;
+left:0;
+top: 0;
+width: 31.77%;	
+}
