@@ -7,27 +7,27 @@ body {
 {
 	background-image: url(../img/cross.png);
 	background-size: 30px;
-	
 }
 
 #burger
 {
-width:	40px;
-height: 40px;
-position: fixed;
-top: 50px;
-right: 50px;
-background-image: url(../img/burger.png);
-background-repeat: no-repeat;
-background-position: center;
-background-size: 40px;
-z-index: 2;
+	width:	35px;
+	height: 35px;
+	position: fixed;
+	top: 50px;
+	right: 50px;
+	background-image: url(../img/burger.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 35px;
+	z-index: 2;
 }
 
 #burger:hover
 {
 	transform: scale(1.1);
 }
+
 #menu_checkbox
 {
 	position: fixed;
@@ -35,24 +35,22 @@ z-index: 2;
 	right: -1000px;
 }
 
-
 #menu
 {
-background-color: rgba(240,240,240, 1);
-position: fixed;
-height: 100%;
-right: -31.77%;
-top: 0;
-width: 31.77%;	
-transition: right 0.1s ease-out;
-z-index: 1;
+	background-color: rgba(240,240,240, 1);
+	position: fixed;
+	height: 100%;
+	right: -31.77%;
+	top: 0;
+	width: 31.77%;	
+	transition: right 0.1s ease-out;
+	z-index: 1;
 }
 
 #menu_checkbox:checked ~ #menu
 {
 	right: 0;
 	transition: right 0.1s ease-out;
-	
 }
 
 #footer
@@ -62,26 +60,95 @@ z-index: 1;
 	width: 100%;
 	left: 0;
 	bottom: 0;
-	height: 6.64%;
+	height: 48px;	
+	display: inline-block;
+	white-space: nowrap;
 }
 
-#logo
+#footer > #footer_container
 {
-	background-image: url(../img/SuperCoolLogo.png);
-	left: 100px;
-	top: 100px;
-	width: 100px;
-	height: 100px;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+#ud4_string, #receive_a_call
+{
+	width: 30%;
+	display: inline-block;
+	overflow: visible;
+	
+}
+
+#receive_a_call #call_button
+{
+	margin-left:auto; margin-right:50px;
+}
+
+#receive_a_call #txt
+{
+	text-align:right;
+	width:100%;
+}
+
+#txt p
+{
+	padding-right:65px;
+	display: inline !important;
+	font-family:  'Open Sans', sans-serif;;
+	font-weight: 800;
+	font-size: 11pt;
+}
+
+#call_button
+{
+	background-image: url(../img/receive_a_call.png);
+	background-size: 169px;
 	background-repeat: no-repeat;
-	background-size: cover;
+	position:absolute;
+	left: 70%;
+	top:0;
+	bottom:0;
+	right: 0;
+	height:48px;
+	width:30%;
+	background-position: right 50px center;
+}
+
+#ud4_string p, #phone_string p
+{
+	font-family: Roboto;
+	font-size: 13px;
+	margin-left: 1pt;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#footer  #copy
+{
+	font-size: 16px;
+	margin-left: 50px;
+}
+
+#footer  #phone_string
+{
+	width: 40%;
+	display: inline-block;
+}
+
+#footer  #phone
+{
+	width: 100%;
+	text-align: center;
 }
 
 #description
 {
-background-color: rgba(255,255,255, 0.75);
-position: fixed;
-height: 93.36%;
-left:0;
-top: 0;
-width: 31.77%;	
+	background-color: rgba(255,255,255, 0.75);
+	position: fixed;
+	height: 93.36%;
+	left:0;
+	top: 0;
+	width: 31.77%;	
 }

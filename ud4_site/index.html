@@ -4,13 +4,32 @@
     <meta charset="utf-8" />
     <title>UD4_site</title>
     <link rel="stylesheet" href="css/main.css" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:800&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
   </head>
 	<body>
-		
+		<!--Todo: подсветка стрелок и бутерброда при движении мыши, не только по ховеру-->
 		<input  type="checkbox" id = "menu_checkbox" ></input>
 		<label id="burger" for="menu_checkbox"></label>
 		<div id = "menu"> здесь какое-то меню	</div>
 		<div id = "description"> Офигенный сайт блаблабла	</div>
-		<div id = "footer">Мы работаем круглый год без сна, отдыха, обеда и выходных. Звоните: 666-666-666</div>
+		<footer id = "footer">
+		<!--Fixme?: выкинуть всю эту дрянь и сделать flex-ами-->
+			<div id = "footer_container">
+				<div id="ud4_string">
+					<p  id= "copy">©</p >
+					<p>2009 ЮДчетыре</p >
+				</div>
+				<div id = "phone_string">
+					<p  id="phone">МSК +3    тел.: +7 (383) 373-02-16</p >
+				</div>
+				<div id = "call_button"></div>
+				<div id="receive_a_call">
+					<div id = "txt">
+						<p>Заказать  звонок</p>
+					</div >
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
