@@ -1,10 +1,12 @@
 #flex-container 
 { 
 	display: -webkit-flex; 
+	display: -ms-flex; 
 	display: flex; 
 	-webkit-flex-flow: row wrap;
 	flex-flow: row wrap;
 	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
 	justify-content:space-between; 
 	position: fixed;
 	background-color: rgb(255,255,255);
@@ -24,6 +26,7 @@
 .flex-item 
  { 
 	-webkit-flex: 1 0 auto;
+	-ms-flex: 1 0 auto;
 	flex: 1 0 auto;
 	font-family: Roboto;
 	vertical-align: middle;

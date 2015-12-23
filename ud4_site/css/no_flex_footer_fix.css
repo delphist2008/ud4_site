@@ -1,0 +1,10 @@
+#flex-container 
+{ 
+	display: table !important; 
+} 
+
+.flex-item 
+ { 
+	display: table-cell !important;
+ }
+ 
