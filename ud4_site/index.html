@@ -4,25 +4,21 @@
     <meta charset="utf-8" />
     <title>UD4_site</title>
     <link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/flex_footer.css" />
+	<link rel="stylesheet" href="css/UD4_logo.css" />
+	<!--<link rel="stylesheet" href="css/footer.css" />-->
 	<link rel="stylesheet" href="css/slider.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:800&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
   </head>
 	<body>
-	
-	
 	<div class="bcg">
     <div class="hero">
-	
-
-	  
-	  
 <!--cases-->
       <div class="homeSlide active" case="1">
         <div class="imageContainer">
           <img src="img/1.jpg" class="slideImg" />
         </div>
-		
         <div class="caseInfo">
           <div class="caseInfoContainer">
             <h1>Портал BIZ360</h1>
@@ -35,7 +31,6 @@
         <div class="imageContainer">
           <img src="img/2.jpg" class="slideImg" />
         </div>
-		
         <div class="caseInfo">
           <div class="caseInfoContainer">
             <h1>Википедия</h1>
@@ -44,34 +39,10 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		<!--Todo: подсветка стрелок и бутерброда при движении мыши, не только по ховеру-->
-		<input  type="checkbox" id = "menu_checkbox" ></input>
+		<input  type="checkbox" id = "menu_checkbox" >
 		<label id="burger" for="menu_checkbox"></label>
 		<div id = "menu"> 
 			<ol id = "menu_container">
@@ -80,9 +51,31 @@
 				<li><a>Контактная информация</a></li>
 				<li><a>Статьи</a></li>
 			</ol>
+			<div id = "button_container">
+				<div id = "prez"></div>
+				<div id = "breef"></div>
+			</div>
 		</div>
-		<footer id = "footer">
+			<footer id = "flex-container">
+				<div id="ud4_string" class = "flex-item ">
+					<div id = "txt">
+						<p><span>©</span> 2009 ЮДчетыре</p >
+					</div>
+				</div>
+				<div id = "phone_string" class = "flex-item ">
+					<div id = "txt">
+						<p  id="phone">МSК +3    тел.: +7 (383) 373-02-16</p >
+					</div>
+				</div>
+				<div id="receive_a_call" class = "flex-item ">
+						<div id = "txt">
+							<p>Заказать  звонок</p>
+						</div >
+				</div>
+			</footer>
+		
 		<!--Fixme?: выкинуть всю эту дрянь и сделать flex-ами-->
+		<!--<footer id = "footer">
 			<div id = "footer_container">
 				<div id="ud4_string">
 					<p  id= "copy">©</p >
@@ -98,14 +91,15 @@
 					</div >
 				</div>
 			</div>
-		</footer>
-	</body>
+		</footer>-->
 	<script src="js/vendor/greensock/TweenLite.js"></script> 
-  <script src="js/vendor/greensock/TimelineMax.js"></script> 
-  <script src="js/vendor/greensock/easing/EasePack.js"></script> 
-  <script src="js/vendor/greensock/plugins/CSSPlugin.js"></script> 
-  <script src="js/vendor/jquery-1.11.2.min.js"></script> 
-  <script src="js/vendor/jquery.mousewheel.min.js"></script> 
-  <script src="js/vendor/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="js/slider.js"></script></body>
+	<script src="js/vendor/greensock/TimelineMax.js"></script> 
+	<script src="js/vendor/greensock/easing/EasePack.js"></script> 
+	<script src="js/vendor/greensock/plugins/CSSPlugin.js"></script> 
+	<script src="js/vendor/jquery-1.11.2.min.js"></script> 
+	<script src="js/vendor/jquery.mousewheel.min.js"></script> 
+	<script src="js/vendor/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/slider.js"></script>
+</body>
+	
 </html>

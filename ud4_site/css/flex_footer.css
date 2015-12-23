@@ -1,0 +1,76 @@
+#flex-container 
+{ 
+	display: -webkit-flex; 
+	display: flex; 
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	-webkit-justify-content: space-between;
+	justify-content:space-between; 
+	position: fixed;
+	background-color: rgb(255,255,255);
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	
+		
+} 
+
+#flex-container p
+{
+	display: inline-block;
+	
+}
+
+.flex-item 
+ { 
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+	font-family: Roboto;
+	vertical-align: middle;
+	line-height: 24px;
+	
+ }
+ 
+#receive_a_call #txt
+{
+	text-align:right;
+	width:100%;
+	font-family:  'Open Sans', sans-serif;;
+	font-weight: 800;
+	font-size: 13px;
+}
+
+#ud4_string #txt
+{
+	text-align:left;
+	width:100%;
+	font-size: 13px;
+}
+
+#phone_string #txt
+{
+	text-align: center;
+	font-size: 13px;
+}
+
+#receive_a_call 
+{
+	padding-right: 50px;
+}
+
+
+#ud4_string 
+{
+	padding-left: 50px;
+}
+#ud4_string  span
+{
+	font-size: 16px;
+	line-height:19px;
+}
+
+
+#phone_string
+{
+	text-align: center;
+}
