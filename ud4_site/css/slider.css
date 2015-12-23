@@ -102,3 +102,20 @@
 	top: 0;
 	width: 31.77%;	
 }
+
+#up
+{
+	width:	35px;
+	height: 35px;
+	position: fixed;
+	top: 45px;
+	right: 50%;
+	background-image: url(../img/up.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 35px;
+	z-index: 2;
+	pointer-events: auto;
+	cursor: pointer;
+	visibility: hidden;
+}

@@ -13,7 +13,8 @@ body {
 
 #button_container > div:hover
 {
-	transform: scale(1.05);
+	transform: scale(1.01);
+	cursor: pointer;
 }
 
 #button_container #prez
@@ -80,6 +81,8 @@ body {
 	background-size: 35px;
 	z-index: 2;
 }
+
+
 
 #burger:hover
 {

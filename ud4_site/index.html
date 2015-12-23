@@ -5,7 +5,7 @@
     <title>UD4_site</title>
     <link rel="stylesheet" href="css/main.css" />
 	<link rel="stylesheet" href="css/flex_footer.css" />
-	<link rel="stylesheet" href="css/UD4_logo.css" />
+	<link rel="stylesheet" href="css/UD4_LOGO.css" />
 	<!--<link rel="stylesheet" href="css/footer.css" />-->
 	<link rel="stylesheet" href="css/slider.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
@@ -15,7 +15,35 @@
 	<div class="bcg">
     <div class="hero">
 <!--cases-->
-      <div class="homeSlide active" case="1">
+	<div class="homeSlide active">
+	<div id = "logo_container">
+       <svg viewBox="0 0 800 600">
+		  <symbol id="s-text">
+			<text text-anchor="middle"
+				  x="50%"
+				  y="50%"
+				  class="text--line"
+				  >
+			  UD4
+			</text>
+		  </symbol>
+  
+	  <g class="g-ants">
+		<use xlink:href="#s-text"
+		  class="text-copy"></use>     
+		<use xlink:href="#s-text"
+		  class="text-copy"></use>     
+		<use xlink:href="#s-text"
+		  class="text-copy"></use>     
+		<use xlink:href="#s-text"
+		  class="text-copy"></use>     
+		<use xlink:href="#s-text"
+		  class="text-copy"></use>     
+	  </g>
+</svg>
+     </div>   
+     </div>
+      <div class="homeSlide " case="1">
         <div class="imageContainer">
           <img src="img/1.jpg" class="slideImg" />
         </div>
@@ -42,6 +70,7 @@
     </div>
   </div>
 		<!--Todo: подсветка стрелок и бутерброда при движении мыши, не только по ховеру-->
+		<div id = "up"></div>
 		<input  type="checkbox" id = "menu_checkbox" >
 		<label id="burger" for="menu_checkbox"></label>
 		<div id = "menu"> 

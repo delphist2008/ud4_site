@@ -55,8 +55,23 @@
 
 #receive_a_call 
 {
-	padding-right: 50px;
+	padding-right: 70px;
+	background-image: url(../img/receive_a_call.png);
+	background-size: 169px;
+	background-repeat: no-repeat;
+	background-position: right 50px center;
+	min-width: 169px;
 }
+
+#receive_a_call p:hover 
+{
+	background-size: 172px;
+	background-position: right 48px center;
+	transform: scale(1.02);
+	cursor: pointer;
+}
+
+
 
 
 #ud4_string 
