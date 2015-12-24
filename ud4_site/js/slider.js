@@ -19,22 +19,22 @@ var $activeSlide = $(".active"),
     $hero = $(".hero"),
 	$randomTimeLine = new TimelineMax({ delay:3,repeat:0, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
-	//$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down");}});
-	//$logoTimeline.set($( "#up" ),  { autoAlpha: 0, delay:5});
+	$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down");}});
+	$logoTimeline.set($( "#up" ),  { autoAlpha: 0, delay:5});
 	animator = {inProgress : false, transitionTime: .7, state:"case"};
 	
-if (!('pointer-events' in document.body.style )) 
-{
-    //fix for browsers without pointer-events support
-	$(document).on('mousemove', '.caseInfo', function (e) {
-		ev = $.Event('mousemove');
-		ev.pageX = e.pageX;
-		ev.pageY = e.pageY;
-	$(this).hide();
-	$(document.elementFromPoint(e.pageX, e.pageY)).trigger(ev);
-	$(this).show();
-	}); 
-};
+	if (!('pointer-events' in document.body.style )) 
+	{
+		//fix for browsers without pointer-events support
+		$(document).on('mousemove', '.caseInfo', function (e) {
+			ev = $.Event('mousemove');
+			ev.pageX = e.pageX;
+			ev.pageY = e.pageY;
+		$(this).hide();
+		$(document.elementFromPoint(e.pageX, e.pageY)).trigger(ev);
+		$(this).show();
+		}); 
+	};
 
 	$(".imageContainer").mousemove(function(event){
 		
@@ -49,8 +49,8 @@ if (!('pointer-events' in document.body.style ))
 	  TweenLite.set($("#up"), {visibility: "visible"});
 	  $homeSlide.toggleClass( "homeSlide homeSlide_anim" );
 	  $bcg.toggleClass( "bcg bcg_anim" );
-	  $(".fullInfoContainer").mCustomScrollbar({scrollInertia:50,  theme:"3d-thick"});
-	  
+	  $(".caseInfoContainer").mCustomScrollbar();
+	  $("#menu").mCustomScrollbar();
 	}
 
 	$(window).load(function(){
@@ -110,16 +110,16 @@ if (!('pointer-events' in document.body.style ))
 	 
 	function getRandomSlide(direction)
 	{
-	if (!animator.inProgress)
-	  {
-	var slideOut = $('.homeSlide_anim.active'),
-		slideIn = $('.homeSlide_anim:not(.active)');
-		slideIn =  slideIn [getRandomInt(1, slideIn.length-1)];
-	if (direction == "down")
-	  goToNextSlide(slideOut, slideIn);
-	if (direction == "up")
-	  goToPreviousSlide(slideOut, slideIn);
-	  };
+		if (!animator.inProgress)
+		{
+			var slideOut = $('.homeSlide_anim.active'),
+				slideIn = $('.homeSlide_anim:not(.active)');
+				slideIn =  slideIn [getRandomInt(1, slideIn.length-1)];
+			if (direction == "down")
+			  goToNextSlide(slideOut, slideIn);
+			if (direction == "up")
+			  goToPreviousSlide(slideOut, slideIn);
+		};
 	};
 	
 	function getDirectSlide(direction)
@@ -176,20 +176,24 @@ if (!('pointer-events' in document.body.style ))
 			getDirectSlide("down");
 		}
 	});
-	
-	$( "html" ).on('swiperight', function(e){
+		
+	$( ".slideImg" ).on('swiperight', function(e){
+		if (!animator.scrolling)
 		getDirectSlide("left")
 	});
 	
-	$( "html" ).on('swipeleft', function(e){
+	$( ".slideImg" ).on('swipeleft', function(e){
+		if (!animator.scrolling)
 		getDirectSlide("right")
 	});
 	
-	$( "html" ).on('swipeup', function(e){
+	$( ".slideImg" ).on('swipeup', function(e){
+		if (!animator.scrolling)
 		getDirectSlide("down")
 	});
 	
-	$( "html" ).on('swipedown', function(e){
+	$( ".slideImg" ).on('swipedown', function(e){
+		if (!animator.scrolling)
 		getDirectSlide("up")
 	});
 	
