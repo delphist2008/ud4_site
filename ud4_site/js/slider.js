@@ -17,10 +17,10 @@ var $activeSlide = $(".active"),
     $slideNavPrev = $("#slideNavPrev"),
     $slideNavNext = $("#slideNavNext")
     $hero = $(".hero"),
-	$randomTimeLine = new TimelineMax({ delay:3,repeat:-1, onRepeat: function () { getRandomSlide("down");}});
+	$randomTimeLine = new TimelineMax({ delay:3,repeat:0, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
-	$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down");}});
-	$logoTimeline.set($( "#up" ),  { autoAlpha: 0, delay:5});
+	//$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down");}});
+	//$logoTimeline.set($( "#up" ),  { autoAlpha: 0, delay:5});
 	animator = {inProgress : false, transitionTime: .7, state:"case"};
 	
 if (!('pointer-events' in document.body.style )) 
@@ -60,6 +60,7 @@ if (!('pointer-events' in document.body.style ))
 	function goToNextSlide(slideOut, slideIn){
 		animator.inProgress = true;
 		$randomTimeLine.restart();
+		 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(slideIn, {y:"100%", className: '+=active'})
@@ -68,16 +69,43 @@ if (!('pointer-events' in document.body.style ))
 				.to(slideOut, animator.transitionTime, {y: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 
+	
+	function goToRightSlide(slideOut, slideIn){
+		animator.inProgress = true;
+		$randomTimeLine.restart();
+
+		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
+			tl
+				.set(slideIn, {x:"100%", className: '+=active'})
+				.set(slideOut, {className: '-=active'})
+				.to(slideIn, animator.transitionTime, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideOut, animator.transitionTime, {x: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
+	};
+	
+	
+	
 	function goToPreviousSlide(slideOut, slideIn){
 	  animator.inProgress = true;
 	  $randomTimeLine.restart();
+
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
 			.set(slideIn, {y:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.set(slideOut, { y: '-=200%', delay:animator.transitionTime})
 			.to(slideIn, animator.transitionTime, {y: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {y: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
+	};
+	
+	function goToLeftSlide(slideOut, slideIn){
+	  animator.inProgress = true;
+	  $randomTimeLine.restart();
+
+	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
+	    tl
+			.set(slideIn, {x:"-100%",className: '+=active'})
+			.set(slideOut, { className: '-=active'})
+			.to(slideIn, animator.transitionTime, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideOut, animator.transitionTime, {x: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	 
 	function getRandomSlide(direction)
@@ -98,6 +126,7 @@ if (!('pointer-events' in document.body.style ))
 	{
 	if (!animator.inProgress)
 	  {
+		 TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
 	var slideOut = $('.homeSlide_anim.active'),
 		slideIn = $('.homeSlide_anim');
 		
@@ -109,6 +138,14 @@ if (!('pointer-events' in document.body.style ))
 			goToNextSlide(slideOut, slideIn[1]);
 		};
 		
+		if (direction == "right")
+		{
+		if (slideIn.index(slideOut)  <  slideIn.length-1)
+			 goToRightSlide(slideOut, slideOut.next(".homeSlide_anim")[0])
+		else
+			goToRightSlide(slideOut, slideIn[1]);
+		};
+		
 		if (direction == "up")
 		{
 		if (slideIn.index(slideOut)  >  1)
@@ -116,7 +153,17 @@ if (!('pointer-events' in document.body.style ))
 		else
 			goToPreviousSlide(slideOut, slideIn[slideIn.length-1]);
 		};
+		
+		if (direction == "left")
+		{
+		if (slideIn.index(slideOut)  >  1)
+			 goToLeftSlide(slideOut, slideOut.prev(".homeSlide_anim")[0])
+		else
+			goToLeftSlide(slideOut, slideIn[slideIn.length-1]);
+		};
+		
 	  };
+	   
 	};
 	
 	$( "html" ).mousewheel(function(event){
@@ -130,12 +177,12 @@ if (!('pointer-events' in document.body.style ))
 		}
 	});
 	
-	$( "html" ).on('swipeleft', function(e){
-		getDirectSlide("down")
+	$( "html" ).on('swiperight', function(e){
+		getDirectSlide("left")
 	});
 	
-	$( "html" ).on('swiperight', function(e){
-		getDirectSlide("up")
+	$( "html" ).on('swipeleft', function(e){
+		getDirectSlide("right")
 	});
 	
 	$( "html" ).on('swipeup', function(e){
