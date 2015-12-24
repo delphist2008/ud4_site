@@ -6,5 +6,6 @@
 .flex-item 
  { 
 	display: table-cell !important;
+	width: 30% !important;
  }
  
