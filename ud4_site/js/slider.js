@@ -131,19 +131,19 @@ if (!('pointer-events' in document.body.style ))
 	});
 	
 	$( "html" ).on('swipeleft', function(e){
-		getDirectSlide("up")
+		getDirectSlide("down")
 	});
 	
 	$( "html" ).on('swiperight', function(e){
-		getDirectSlide("down")
-	});
-	
-	$( "html" ).on('swipeup', function(e){
 		getDirectSlide("up")
 	});
 	
-	$( "html" ).on('swipedown', function(e){
+	$( "html" ).on('swipeup', function(e){
 		getDirectSlide("down")
+	});
+	
+	$( "html" ).on('swipedown', function(e){
+		getDirectSlide("up")
 	});
 	
 	
