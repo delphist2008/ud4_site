@@ -130,6 +130,23 @@ if (!('pointer-events' in document.body.style ))
 		}
 	});
 	
+	$( "html" ).on('swipeleft', function(e){
+		getDirectSlide("up")
+	});
+	
+	$( "html" ).on('swiperight', function(e){
+		getDirectSlide("down")
+	});
+	
+	$( "html" ).on('swipeup', function(e){
+		getDirectSlide("up")
+	});
+	
+	$( "html" ).on('swipedown', function(e){
+		getDirectSlide("down")
+	});
+	
+	
 	$( "#up" ).click(function(e){
 		e.preventDefault();
 		getDirectSlide("down")
