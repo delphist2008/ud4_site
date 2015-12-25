@@ -1,7 +1,5 @@
 (function($) {
 
-
-
 function getRandomInt(min, max)
 {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -13,15 +11,12 @@ var $activeSlide = $(".active"),
 	$fullInfo = $(".caseFullInfo"),
 	$showInfo = $(".showInfo"),
 	$closeInfo = $(".closeInfo"),
-	$slideNav = $(".slideNav"),
-    $slideNavPrev = $("#slideNavPrev"),
-    $slideNavNext = $("#slideNavNext")
     $hero = $(".hero"),
-	$randomTimeLine = new TimelineMax({ delay:3,repeat:0, onRepeat: function () { getRandomSlide("down");}});
+	$randomTimeLine = new TimelineMax({delay:3, repeat:-1, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 	$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down");}});
-	$logoTimeline.set($( "#up" ),  { autoAlpha: 0, delay:5});
-	animator = {inProgress : false, transitionTime: .7, state:"case"};
+	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
+	animator = {inProgress : false, transitionTime: .7};
 	
 	if (!('pointer-events' in document.body.style )) 
 	{
@@ -43,6 +38,16 @@ var $activeSlide = $(".active"),
 		TweenLite.to(event.currentTarget.firstElementChild, 0.6, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
 	});
 	
+	$("html").mousemove(function(event){
+		TweenLite.to($("#up_outline"), 0.5, { opacity: "0.5"});
+		if ($("#menu_checkbox:checked").length == 0) 
+			TweenLite.to($("#burger_outline"), 0.5, { opacity: "0.7"});
+		  clearTimeout($.data(this, 'mouseTimer'));
+		$.data(this, 'mouseTimer', setTimeout(function() {
+			TweenLite.to($("#burger_outline, #up_outline"), 0.5, { opacity: "0"});	
+		}, 500));	
+	});
+	
 	function init(){
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
 	  TweenLite.set($fullInfo, {autoAlpha: 0});
@@ -59,7 +64,6 @@ var $activeSlide = $(".active"),
 
 	function goToNextSlide(slideOut, slideIn){
 		animator.inProgress = true;
-		$randomTimeLine.restart();
 		 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
@@ -69,10 +73,8 @@ var $activeSlide = $(".active"),
 				.to(slideOut, animator.transitionTime, {y: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 
-	
 	function goToRightSlide(slideOut, slideIn){
 		animator.inProgress = true;
-		$randomTimeLine.restart();
 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
@@ -82,11 +84,8 @@ var $activeSlide = $(".active"),
 				.to(slideOut, animator.transitionTime, {x: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	
-	
-	
 	function goToPreviousSlide(slideOut, slideIn){
 	  animator.inProgress = true;
-	  $randomTimeLine.restart();
 
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
@@ -98,7 +97,6 @@ var $activeSlide = $(".active"),
 	
 	function goToLeftSlide(slideOut, slideIn){
 	  animator.inProgress = true;
-	  $randomTimeLine.restart();
 
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
@@ -161,20 +159,14 @@ var $activeSlide = $(".active"),
 		else
 			goToLeftSlide(slideOut, slideIn[slideIn.length-1]);
 		};
-		
 	  };
-	   
 	};
 	
 	$( "html" ).mousewheel(function(event){
-		TweenLite.to($( "#up" ), 0, { autoAlpha: 0,ease:Power2.easeInOut}, 0);
-		if (animator.state == "case")
-		{
 		if (event.deltaY < 0)
 			getDirectSlide("up")
 		else
 			getDirectSlide("down");
-		}
 	});
 		
 	$( ".slideImg" ).on('swiperight', function(e){
@@ -197,12 +189,8 @@ var $activeSlide = $(".active"),
 		getDirectSlide("up")
 	});
 	
-	
 	$( "#up" ).click(function(e){
-		e.preventDefault();
-		getDirectSlide("down")
-		TweenLite.to($( "#up" ), 0, { autoAlpha: 0,ease:Power2.easeInOut}, 0);
-		
+		getDirectSlide("down")	
 	});
 
 })(jQuery);
