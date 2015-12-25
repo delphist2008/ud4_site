@@ -12,11 +12,11 @@ var $activeSlide = $(".active"),
 	$showInfo = $(".showInfo"),
 	$closeInfo = $(".closeInfo"),
     $hero = $(".hero"),
-	$randomTimeLine = new TimelineMax({delay:3, repeat:-1, onRepeat: function () { getRandomSlide("down");}});
+	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
-	$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down");}});
+	$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
-	animator = {inProgress : false, transitionTime: .7};
+	animator = {inProgress : false, transitionTime: .35};
 	
 	if (!('pointer-events' in document.body.style )) 
 	{
@@ -108,6 +108,8 @@ var $activeSlide = $(".active"),
 	 
 	function getRandomSlide(direction)
 	{
+		$logoTimeline.stop();
+		$randomTimeLine.play();
 		if (!animator.inProgress)
 		{
 			var slideOut = $('.homeSlide_anim.active'),
@@ -122,6 +124,8 @@ var $activeSlide = $(".active"),
 	
 	function getDirectSlide(direction)
 	{
+	$logoTimeline.stop();
+	$randomTimeLine.play();
 	if (!animator.inProgress)
 	  {
 		 TweenLite.set($(".homeSlide_anim"),  { transform:"none"});

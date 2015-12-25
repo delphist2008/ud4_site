@@ -6,10 +6,10 @@
 	color: black;
 	text-align: left;
 	font-family: Roboto;
-	margin-top: 20%;
+	margin-top: 30%;
 	width: 80%;
-	height: 70%;
-	margin-left: 10%;
+	height: 60%;
+	margin-left: 50px;
 	overflow: auto;
 }
 
@@ -82,21 +82,28 @@
 
 .slideImg
 {
-	
+	background-image: url(../img/prestizh_index.jpg);
 	position: relative;
 	left: 50%;
 	top: 50%;
-	-moz-transform: translateY(-50%) translateX(-50%) scale(2);
-	-ms-transform: translateY(-50%) translateX(-50%) scale(2);
-	-webkit-transform: translateY(-50%) translateX(-50%) scale(2);
-	-o-transform: translateY(-50%) translateX(-50%) scale(2); 
-	-moz-transform: translateY(-50%) translateX(-50%) scale(2);
-	transform: translateY(-50%) translateX(-50%) scale(2);
+	-moz-transform: translateY(-50%) translateX(-50%) ;
+	-ms-transform: translateY(-50%) translateX(-50%) ;
+	-webkit-transform: translateY(-50%) translateX(-50%) ;
+	-o-transform: translateY(-50%) translateX(-50%) ; 
+	-moz-transform: translateY(-50%) translateX(-50%) ;
+	transform: translateY(-50%) translateX(-50%) ;
+	background-size: cover;
+	width: 120%;
+	height: 120%;
+
 }
 .caseInfo
 {
 
-	
+	background-image: url(../img/logo_small.png);
+	background-repeat: no-repeat;
+	background-position: left 48px top 46px;
+	background-size: 143px auto;
 	background-color: rgba(255,255,255, 0.75);
 	position: absolute;
 	height: 100%;
