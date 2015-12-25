@@ -14,7 +14,7 @@ var $activeSlide = $(".active"),
     $hero = $(".hero"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
-	$logoTimeline = new TimelineMax({ repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
+	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
 	animator = {inProgress : false, transitionTime: .35};
 	
@@ -109,7 +109,7 @@ var $activeSlide = $(".active"),
 	function getRandomSlide(direction)
 	{
 		$logoTimeline.stop();
-		$randomTimeLine.play();
+		//$randomTimeLine.play();
 		if (!animator.inProgress)
 		{
 			var slideOut = $('.homeSlide_anim.active'),
@@ -125,7 +125,7 @@ var $activeSlide = $(".active"),
 	function getDirectSlide(direction)
 	{
 	$logoTimeline.stop();
-	$randomTimeLine.play();
+	//$randomTimeLine.play();
 	if (!animator.inProgress)
 	  {
 		 TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
@@ -195,6 +195,10 @@ var $activeSlide = $(".active"),
 	
 	$( "#up" ).click(function(e){
 		getDirectSlide("down")	
+	});
+	
+	$( "#burger" ).click(function(e){
+		 TweenLite.set($("#burger_outline"),  { opacity:"0"});
 	});
 
 })(jQuery);
