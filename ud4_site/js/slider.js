@@ -16,7 +16,7 @@ var $activeSlide = $(".active"),
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
-	animator = {inProgress : false, transitionTime: 1};//.35
+	animator = {inProgress : false, transitionTime: .35};//.35
 	
 	if (!('pointer-events' in document.body.style )) 
 	{
@@ -70,10 +70,11 @@ var $activeSlide = $(".active"),
 		 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
-				.set(slideIn, {y:"100%", className: '+=active'})
+				.set(slideIn, {top:"100%", autoAlpha: 1, className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn, animator.transitionTime, {y: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
-				.to(slideOut, animator.transitionTime, {y: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
+				.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
+				.to(slideIn, animator.transitionTime, {top: '-=100%', ease:Power2.easeInOut}, 0)
+				.to(slideOut, animator.transitionTime, {top: '-=100%',ease:Power2.easeInOut}, 0);
 	};
 
 	function goToRightSlide(slideOut, slideIn){
@@ -81,10 +82,11 @@ var $activeSlide = $(".active"),
 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
-				.set(slideIn, {x:"100%", className: '+=active'})
+				.set(slideIn, {left:"100%", autoAlpha: 1, className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn, animator.transitionTime, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
-				.to(slideOut, animator.transitionTime, {x: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
+				.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
+				.to(slideIn, animator.transitionTime, {left: '-=100%', ease:Power2.easeInOut}, 0)
+				.to(slideOut, animator.transitionTime, {left: '-=100%', ease:Power2.easeInOut}, 0);
 	};
 	
 	function goToPreviousSlide(slideOut, slideIn){
@@ -92,10 +94,11 @@ var $activeSlide = $(".active"),
 
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
-			.set(slideIn, {y:"-100%",className: '+=active'})
+			.set(slideIn, {top:"-100%",autoAlpha: 1,className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn, animator.transitionTime, {y: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
-			.to(slideOut, animator.transitionTime, {y: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
+			.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
+			.to(slideIn, animator.transitionTime, {top: '+=100%' ,ease:Power2.easeInOut}, 0)
+			.to(slideOut, animator.transitionTime, {top: '+=100%', ease:Power2.easeInOut}, 0);
 	};
 	
 	function goToLeftSlide(slideOut, slideIn){
@@ -103,10 +106,11 @@ var $activeSlide = $(".active"),
 
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
-			.set(slideIn, {x:"-100%",className: '+=active'})
+			.set(slideIn, {left:"-100%",autoAlpha: 1,className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn, animator.transitionTime, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
-			.to(slideOut, animator.transitionTime, {x: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
+			.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
+			.to(slideIn, animator.transitionTime, {left: '+=100%',ease:Power2.easeInOut}, 0)
+			.to(slideOut, animator.transitionTime, {left: '+=100%', ease:Power2.easeInOut}, 0);
 	};
 	 
 	function getRandomSlide(direction)
@@ -131,7 +135,7 @@ var $activeSlide = $(".active"),
 	//$randomTimeLine.play();
 	if (!animator.inProgress)
 	  {
-		 TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
+		 TweenLite.set($(".homeSlide_anim"),  { top:"0"});
 	var slideOut = $('.homeSlide_anim.active'),
 		slideIn = $('.homeSlide_anim');
 		
