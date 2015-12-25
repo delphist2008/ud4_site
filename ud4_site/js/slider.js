@@ -16,7 +16,7 @@ var $activeSlide = $(".active"),
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
-	animator = {inProgress : false, transitionTime: .35};
+	animator = {inProgress : false, transitionTime: 1};//.35
 	
 	if (!('pointer-events' in document.body.style )) 
 	{
@@ -35,13 +35,16 @@ var $activeSlide = $(".active"),
 		
 		var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
 		var yPos = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*3.0) - 50;
-		TweenLite.to(event.currentTarget.firstElementChild, 0.6, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
+		var xPos2 = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 5.6) -50;
+		var yPos2 = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*5.6) - 50;
+		TweenLite.to($(".slideImg"), 0.4, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
+		TweenLite.to($(".slideImg2"), 0.5, { x:xPos2 + "%", y:yPos2 + "%", ease:Power1.easeOut});
 	});
 	
 	$("html").mousemove(function(event){
-		TweenLite.to($("#up_outline"), 0.5, { opacity: "0.5"});
+		TweenLite.to($("#up_outline"), 0.5, { opacity: "1"});
 		if ($("#menu_checkbox:checked").length == 0) 
-			TweenLite.to($("#burger_outline"), 0.5, { opacity: "0.7"});
+			TweenLite.to($("#burger_outline"), 0.5, { opacity: "1"});
 		  clearTimeout($.data(this, 'mouseTimer'));
 		$.data(this, 'mouseTimer', setTimeout(function() {
 			TweenLite.to($("#burger_outline, #up_outline"), 0.5, { opacity: "0"});	
@@ -54,7 +57,7 @@ var $activeSlide = $(".active"),
 	  TweenLite.set($("#up"), {visibility: "visible"});
 	  $homeSlide.toggleClass( "homeSlide homeSlide_anim" );
 	  $bcg.toggleClass( "bcg bcg_anim" );
-	  $(".caseInfoContainer").mCustomScrollbar();
+	  //$(".caseInfoContainer").mCustomScrollbar();
 	  $("#menu").mCustomScrollbar();
 	}
 

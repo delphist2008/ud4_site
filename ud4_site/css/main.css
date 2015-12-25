@@ -2,6 +2,27 @@ body {
   color: #222222;
 }
 
+
+
+
+.whiteBar
+{
+
+	background-image: url(../img/logo_small.png);
+	background-repeat: no-repeat;
+	background-position: left 48px top 46px;
+	background-size: 143px auto;
+	background-color: rgba(255,255,255, 0.75);
+	position: fixed;
+	height: 100%;
+	left:0;
+	top: 0;
+	width: 31.77%;	
+	z-index: 1;
+
+}
+
+
 #menu #button_container
 {
 	margin-left: 40px;
@@ -13,7 +34,7 @@ body {
 
 #button_container > div:hover
 {
-	transform: scale(1.01);
+	
 	cursor: pointer;
 }
 
@@ -88,7 +109,7 @@ body {
 
 #burger:hover
 {
-	transform: scale(1.1);
+
 }
 
 #burger_outline
