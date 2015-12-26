@@ -71,8 +71,8 @@ var $activeSlide = $(".active"),
 			tl
 				.set(slideIn, {y:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {y: '-=100%',autoAlpha: 1, ease:Power1.easeInOut}, 0)
-				.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {y: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideIn.filter(".imageContainer"), animator.transitionTime, {y: '-=100%',autoAlpha: 1, ease:Power1.easeInOut}, 0)
+				.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {y: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
 				.to(slideOut, animator.transitionTime, {y: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 
@@ -83,8 +83,8 @@ var $activeSlide = $(".active"),
 			tl
 				.set(slideIn, {x:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
-				.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideIn.filter(".imageContainer"), animator.transitionTime, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
 				.to(slideOut, animator.transitionTime, {x: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	
@@ -95,8 +95,8 @@ var $activeSlide = $(".active"),
 	    tl
 			.set(slideIn, {y:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {y: '+=100%', autoAlpha: 1,ease:Power1.easeInOut}, 0)
-			.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {y: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideIn.filter(".imageContainer"), animator.transitionTime, {y: '+=100%', autoAlpha: 1,ease:Power1.easeInOut}, 0)
+			.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {y: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {y: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	
@@ -107,8 +107,8 @@ var $activeSlide = $(".active"),
 	    tl
 			.set(slideIn, {x:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
-			.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideIn.filter(".imageContainer"), animator.transitionTime, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {x: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	 
