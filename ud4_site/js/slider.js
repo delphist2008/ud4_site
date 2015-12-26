@@ -8,15 +8,12 @@ function getRandomInt(min, max)
 var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
 	$bcg = $(".bcg"),
-	$fullInfo = $(".caseFullInfo"),
-	$showInfo = $(".showInfo"),
-	$closeInfo = $(".closeInfo"),
     $hero = $(".hero"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
 	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
-	animator = {inProgress : false, transitionTime: 1};//.35
+	animator = {inProgress : false, transitionTime: .35};//.35
 	
 	if (!('pointer-events' in document.body.style )) 
 	{
@@ -31,17 +28,16 @@ var $activeSlide = $(".active"),
 		}); 
 	};
 
-	$(".imageContainer").mousemove(function(event){
-		
+	
+	
+	$("html").mousemove(function(event){
 		var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
 		var yPos = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*3.0) - 50;
 		var xPos2 = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 5.6) -50;
 		var yPos2 = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*5.6) - 50;
 		TweenLite.to($(".slideImg"), 0.4, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
 		TweenLite.to($(".slideImg2"), 0.5, { x:xPos2 + "%", y:yPos2 + "%", ease:Power1.easeOut});
-	});
-	
-	$("html").mousemove(function(event){
+		
 		TweenLite.to($("#up_outline"), 0.5, { opacity: "1"});
 		if ($("#menu_checkbox:checked").length == 0) 
 			TweenLite.to($("#burger_outline"), 0.5, { opacity: "1"});
@@ -53,7 +49,7 @@ var $activeSlide = $(".active"),
 	
 	function init(){
 	  TweenLite.set($homeSlide.not($activeSlide), {autoAlpha: 0});
-	  TweenLite.set($fullInfo, {autoAlpha: 0});
+	  TweenLite.set($(".imageContainer").not($(".active")), {autoAlpha: 0});
 	  TweenLite.set($("#up"), {visibility: "visible"});
 	  $homeSlide.toggleClass( "homeSlide homeSlide_anim" );
 	  $bcg.toggleClass( "bcg bcg_anim" );
@@ -132,39 +128,56 @@ var $activeSlide = $(".active"),
 	if (!animator.inProgress)
 	  {
 		 TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
-	var slideOut = $('.homeSlide_anim.active'),
-		slideIn = $('.homeSlide_anim');
+		 TweenLite.set($(".imageContainer"),  { transform:"none"});
+		var slideOut = $('.homeSlide_anim.active');
+		var soim = $(".imageContainer[case="+slideOut[0].attributes["case"].value+"]");
+		var slideIn = $('.homeSlide_anim');
+		var si;
+		var img;
 		
 		if (direction == "down")
 		{
-		if (slideIn.index(slideOut)  <  slideIn.length-1)
-			 goToNextSlide(slideOut, slideOut.next(".homeSlide_anim")[0])
-		else
-			goToNextSlide(slideOut, slideIn[1]);
+			
+			if (slideIn.index(slideOut)  <  slideIn.length-1)
+				si = slideOut.nextAll(".homeSlide_anim")[0];
+			else	
+				si = slideIn[1];	
+			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+			si = $(si).add(img);
+			goToNextSlide(slideOut.add(soim), si);
 		};
 		
 		if (direction == "right")
 		{
-		if (slideIn.index(slideOut)  <  slideIn.length-1)
-			 goToRightSlide(slideOut, slideOut.next(".homeSlide_anim")[0])
-		else
-			goToRightSlide(slideOut, slideIn[1]);
+			if (slideIn.index(slideOut)  <  slideIn.length-1)
+				si = slideOut.nextAll(".homeSlide_anim")[0];
+			else	
+				si = slideIn[1];	
+			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+			si = $(si).add(img);
+			goToRightSlide(slideOut.add(soim), si);
 		};
 		
 		if (direction == "up")
 		{
-		if (slideIn.index(slideOut)  >  1)
-			 goToPreviousSlide(slideOut, slideOut.prev(".homeSlide_anim")[0])
-		else
-			goToPreviousSlide(slideOut, slideIn[slideIn.length-1]);
+			if (slideIn.index(slideOut)  >  1)
+				si = slideOut.prevAll(".homeSlide_anim")[0];
+			else
+				si =  slideIn[slideIn.length-1];
+			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+			si = $(si).add(img);
+			goToPreviousSlide(slideOut.add(soim), si);
 		};
 		
 		if (direction == "left")
 		{
-		if (slideIn.index(slideOut)  >  1)
-			 goToLeftSlide(slideOut, slideOut.prev(".homeSlide_anim")[0])
-		else
-			goToLeftSlide(slideOut, slideIn[slideIn.length-1]);
+			if (slideIn.index(slideOut)  >  1)
+				si = slideOut.prevAll(".homeSlide_anim")[0];
+			else
+				si =  slideIn[slideIn.length-1];
+			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+			si = $(si).add(img);
+			goToLeftSlide(slideOut.add(soim), si);
 		};
 	  };
 	};
@@ -176,22 +189,22 @@ var $activeSlide = $(".active"),
 			getDirectSlide("down");
 	});
 		
-	$( ".slideImg" ).on('swiperight', function(e){
+	$( "html" ).on('swiperight', function(e){
 		if (!animator.scrolling)
 		getDirectSlide("left")
 	});
 	
-	$( ".slideImg" ).on('swipeleft', function(e){
+	$( "html" ).on('swipeleft', function(e){
 		if (!animator.scrolling)
 		getDirectSlide("right")
 	});
 	
-	$( ".slideImg" ).on('swipeup', function(e){
+	$( "html" ).on('swipeup', function(e){
 		if (!animator.scrolling)
 		getDirectSlide("down")
 	});
 	
-	$( ".slideImg" ).on('swipedown', function(e){
+	$( "html" ).on('swipedown', function(e){
 		if (!animator.scrolling)
 		getDirectSlide("up")
 	});
