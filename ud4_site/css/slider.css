@@ -2,10 +2,10 @@
 {
 	position: relative;
 	margin-top: 30%;
-	width: 80%;
+	
 	height: 60%;
-	margin-left: 50px;
-	overflow: auto;
+	
+	
 }
 
 .caseInfoContainer
@@ -13,10 +13,11 @@
 	position: absolute;
 	color: black;
 	font-family: Roboto;
-	height: 100%;
-	width: 30%;
-	background-color: red;
-	border: 1px solid red;
+	height: 70%;
+	width: 25%;
+	top: 25%;
+	margin-left: 50px;
+	overflow: auto;
 	
 }
 

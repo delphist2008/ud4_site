@@ -31,20 +31,23 @@ var $activeSlide = $(".active"),
 	
 	
 	$("html").mousemove(function(event){
-		var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
-		var yPos = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*3.0) - 50;
-		var xPos2 = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 5.6) -50;
-		var yPos2 = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*5.6) - 50;
-		TweenLite.to($(".slideImg"), 0.4, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
-		TweenLite.to($(".slideImg2"), 0.5, { x:xPos2 + "%", y:yPos2 + "%", ease:Power1.easeOut});
-		
-		TweenLite.to($("#up_outline"), 0.5, { opacity: "1"});
-		if ($("#menu_checkbox:checked").length == 0) 
-			TweenLite.to($("#burger_outline"), 0.5, { opacity: "1"});
-		  clearTimeout($.data(this, 'mouseTimer'));
-		$.data(this, 'mouseTimer', setTimeout(function() {
-			TweenLite.to($("#burger_outline, #up_outline"), 0.5, { opacity: "0"});	
-		}, 500));	
+		if (!animator.inProgress)
+		{
+			var xPos = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 3.0) -50;
+			var yPos = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*3.0) - 50;
+			var xPos2 = -(((event.pageX  - $( this ).offset().left)/event.currentTarget.clientWidth-0.5) * 5.6) -50;
+			var yPos2 = -(((event.pageY  - $( this ).offset().top)/event.currentTarget.clientHeight-0.5)*5.6) - 50;
+			TweenLite.to($(".slideImg"), 0.4, { x:xPos + "%", y:yPos + "%", ease:Power1.easeOut});
+			TweenLite.to($(".slideImg2"), 0.5, { x:xPos2 + "%", y:yPos2 + "%", ease:Power1.easeOut});
+			
+			TweenLite.to($("#up_outline"), 0.5, { opacity: "1"});
+			if ($("#menu_checkbox:checked").length == 0) 
+				TweenLite.to($("#burger_outline"), 0.5, { opacity: "1"});
+			  clearTimeout($.data(this, 'mouseTimer'));
+			$.data(this, 'mouseTimer', setTimeout(function() {
+				TweenLite.to($("#burger_outline, #up_outline"), 0.5, { opacity: "0"});	
+			}, 500));
+		}		
 	});
 	
 	function init(){
@@ -68,7 +71,8 @@ var $activeSlide = $(".active"),
 			tl
 				.set(slideIn, {y:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn, animator.transitionTime, {y: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {y: '-=100%',autoAlpha: 1, ease:Power1.easeInOut}, 0)
+				.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {y: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
 				.to(slideOut, animator.transitionTime, {y: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 
@@ -79,7 +83,8 @@ var $activeSlide = $(".active"),
 			tl
 				.set(slideIn, {x:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn, animator.transitionTime, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
+				.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {x: '-=100%',autoAlpha: 1, ease:Power2.easeInOut}, 0)
 				.to(slideOut, animator.transitionTime, {x: '-=100%',autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	
@@ -90,7 +95,8 @@ var $activeSlide = $(".active"),
 	    tl
 			.set(slideIn, {y:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn, animator.transitionTime, {y: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {y: '+=100%', autoAlpha: 1,ease:Power1.easeInOut}, 0)
+			.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {y: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {y: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	
@@ -101,7 +107,8 @@ var $activeSlide = $(".active"),
 	    tl
 			.set(slideIn, {x:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-			.to(slideIn, animator.transitionTime, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideIn.not(".imageContainer"), animator.transitionTime*1.35, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
+			.to(slideIn.not(".homeSlide_anim"), animator.transitionTime, {x: '+=100%', autoAlpha: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {x: '+=100%', autoAlpha: 0, ease:Power2.easeInOut}, 0);
 	};
 	 
