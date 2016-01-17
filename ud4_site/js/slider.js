@@ -29,7 +29,7 @@ var $activeSlide = $(".active"),
 			
 			TweenLite.to($("#up_outline"), 0.5, { opacity: "1"});
 			if ($("#menu_checkbox:checked").length == 0) 
-				TweenLite.to($("#burger_outline"), 0.5, { opacity: "1"});
+				TweenLite.to($("#burger_outline"), 0.5, { opacity: "0.75"});
 			  clearTimeout($.data(this, 'mouseTimer'));
 			$.data(this, 'mouseTimer', setTimeout(function() {
 				TweenLite.to($("#burger_outline, #up_outline"), 0.5, { opacity: "0"});	
@@ -213,7 +213,28 @@ var $activeSlide = $(".active"),
 	});
 	
 	$( "#burger" ).click(function(e){
-		 TweenLite.set($("#burger_outline"),  { opacity:"0"});
+		if ($("#menu_checkbox:checked").length == 0) 
+		{
+			var faceTl = new TimelineMax({});
+			$("#toCross")[0].beginElement();
+			faceTl.to(' #burger_up',.08, {
+			  y: "+=300%" 
+			});
+			  faceTl.to(' #burger_down',.08, {
+			  y: "-=300%"
+			});
+		}
+		else
+		{
+			var faceTl = new TimelineMax({});
+			$("#toBar")[0].beginElement();
+			faceTl.to(' #burger_up',.08, {
+			  y:"-=300%"
+			});
+			  faceTl.to(' #burger_down',.08, {
+			   y: "+=300%" 
+			});
+		}
 	});
 
 })(jQuery);

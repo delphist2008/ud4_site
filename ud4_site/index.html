@@ -71,9 +71,13 @@
           </div>
       </div>
 	  <div class="imageContainer" case="2">
+	   
           <div  class="slideImg" style="background-image: url(img/women_ud4_h.jpg);" ></div>
 		  <div  class="slideImg2" style="background-image: url(img/woman_overlay.png);" ></div>
+		 
       </div>
+	  
+	  
 	  
       <div class="homeSlide" case="3">
        
@@ -87,13 +91,59 @@
           <div  class="slideImg" style="background-image: url(img/ud4_ud4_h.jpg);" ></div>
 		  <div  class="slideImg2" style="background-image: url(img/ud4_overlay.png);" ></div>
         </div>
+		
+		
+		
+		<!--видео на слайде
+		<div class="homeSlide" case="4">
+          <div class="caseInfoContainer">
+            <h1>Котики</h1>
+			<a href="http://biz360.ru" >котэ.рф</a>
+			<span>Слайд для тестирования видео на бэкграунде</span>
+          </div>
+      </div>
+	  <div class="imageContainer" case="4">
+	   
+        
+		  <video id="slideMovie" src="img\cat.mp4" autoplay="autoplay" loop="loop"></video>
+      </div>
+	  -->
     </div>
   </div>
   
 		
 		<div id = "up"><div id = "up_outline"></div></div>
 		<input  type="checkbox" id = "menu_checkbox" >
-		<label id="burger" for="menu_checkbox"><div id = "burger_outline"></div></label>
+		<label id="burger" for="menu_checkbox">
+<div id = "burger_outline"></div>	
+		<svg class = "mainSvg" version="1.0" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">
+<g transform="translate(0, 0) scale(0.100000,0.100000)">
+<polygon id = "burger_m" points="92.8,187.9 65.9,187.9 37.7,187.9 37.7,169.1 37.7,150.2 73.7,150.2 122.5,150.2 175.0,150.2 224.4,150.2 250.6,150.2 263.7,150.2 286.3,150.2 306.9,150.2 306.9,169.1 306.9,187.9 288.7,187.9 266.9,187.9 230.6,187.9 175.0,187.9 140.3,187.9 110.3,187.9 92.8,187.9"/>
+ <animate id="toCross" 
+    xlink:href="#burger_m"
+    attributeName="points"
+    to="80.8,269.2 65.8,250.8 108.8,210.5 147.0,171.8 108.2,132.5 70.0,90.0 97.5,61.9 175.0,140.0 217.5,99.1 256.8,58.2 268.2,72.7 280.0,91.0 242.3,132.5 204.6,169.6 237.5,204.6 280.0,252.5 255.0,280.0 216.5,242.9 176.1,204.6 135.2,242.3 90.0,280.0 80.8,269.2" 
+    dur="150ms"
+    fill="freeze" 
+	begin="indefinite"
+   />
+   <animate id="toBar" 
+    xlink:href="#burger_m"
+    attributeName="points"
+    to="92.8,187.9 65.9,187.9 37.7,187.9 37.7,169.1 37.7,150.2 73.7,150.2 122.5,150.2 175.0,150.2 224.4,150.2 250.6,150.2 263.7,150.2 286.3,150.2 306.9,150.2 306.9,169.1 306.9,187.9 288.7,187.9 266.9,187.9 230.6,187.9 175.0,187.9 140.3,187.9 110.3,187.9 92.8,187.9" 
+    dur="150ms"
+    fill="freeze" 
+	begin="indefinite"
+   />
+<path id="burger_up" d="M37.69,261.152v-18.848H172.31h134.614v18.848V280H172.31H37.69V261.152z"/>
+<path id="burger_down" d="M37.69,83.462V64.614H172.31h134.614v18.848v18.848H172.31H37.69V83.462z"/>
+	
+</g>
+</svg>
+
+</label>
+
 		<div id = "menu"> 
 			<ol id = "menu_container">
 				<li><a>О UD4</a></li>
