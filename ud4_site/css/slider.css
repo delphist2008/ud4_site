@@ -1,12 +1,3 @@
-.unused
-{
-	position: relative;
-	margin-top: 30%;
-	
-	height: 60%;
-	
-	
-}
 
 .caseInfoContainer
 {
@@ -35,7 +26,7 @@
 
 .caseInfoContainer a
 {
-	pointer-events: auto;
+
 	display: block;
 	margin-bottom: 15px;
 }
@@ -54,6 +45,7 @@
 .bcg {
 	width: 100%;
 	margin:0;
+	
 }
 
 .hero {
@@ -88,8 +80,11 @@
 	height: 100%;
 	margin-left: 0;
 	position: absolute;
-	z-index: 1;
+	z-index: 0;
+
 }
+
+
 
 .slideImg, .slideImg2
 {
@@ -123,7 +118,7 @@
 	background-position: center;
 	background-size: 35px;
 	z-index: 4;
-	pointer-events: auto;
+
 	cursor: pointer;
 	visibility: hidden;
 }
