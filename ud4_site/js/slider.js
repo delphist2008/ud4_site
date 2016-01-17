@@ -56,17 +56,11 @@ var $activeSlide = $(".active"),
 		 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
-				.set(slideIn, {top:"100%", autoAlpha: 1, className: '+=active'})
+				.set(slideIn, {y:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-<<<<<<< HEAD
-				.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
-				.to(slideIn, animator.transitionTime, {top: '-=100%', ease:Power2.easeInOut}, 0)
-				.to(slideOut, animator.transitionTime, {top: '-=100%',ease:Power2.easeInOut}, 0);
-=======
 				.to(slideIn.filter(".imageContainer"), animator.transitionTime, {y: '-=100%',opacity: 1, ease:Power1.easeInOut}, 0)
 				.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {y: '-=100%',opacity: 1, ease:Power2.easeInOut}, 0)
 				.to(slideOut, animator.transitionTime, {y: '-=100%',opacity: 0, ease:Power2.easeInOut}, 0);
->>>>>>> css_transform_animations
 	};
 
 	function goToRightSlide(slideOut, slideIn){
@@ -74,17 +68,11 @@ var $activeSlide = $(".active"),
 
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
-				.set(slideIn, {left:"100%", autoAlpha: 1, className: '+=active'})
+				.set(slideIn, {x:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-<<<<<<< HEAD
-				.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
-				.to(slideIn, animator.transitionTime, {left: '-=100%', ease:Power2.easeInOut}, 0)
-				.to(slideOut, animator.transitionTime, {left: '-=100%', ease:Power2.easeInOut}, 0);
-=======
 				.to(slideIn.filter(".imageContainer"), animator.transitionTime, {x: '-=100%',opacity: 1, ease:Power2.easeInOut}, 0)
 				.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {x: '-=100%',opacity: 1, ease:Power2.easeInOut}, 0)
 				.to(slideOut, animator.transitionTime, {x: '-=100%',opacity: 0, ease:Power2.easeInOut}, 0);
->>>>>>> css_transform_animations
 	};
 	
 	function goToPreviousSlide(slideOut, slideIn){
@@ -92,17 +80,11 @@ var $activeSlide = $(".active"),
 
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
-			.set(slideIn, {top:"-100%",autoAlpha: 1,className: '+=active'})
+			.set(slideIn, {y:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-<<<<<<< HEAD
-			.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
-			.to(slideIn, animator.transitionTime, {top: '+=100%' ,ease:Power2.easeInOut}, 0)
-			.to(slideOut, animator.transitionTime, {top: '+=100%', ease:Power2.easeInOut}, 0);
-=======
 			.to(slideIn.filter(".imageContainer"), animator.transitionTime, {y: '+=100%', opacity: 1,ease:Power1.easeInOut}, 0)
 			.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {y: '+=100%', opacity: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {y: '+=100%', opacity: 0, ease:Power2.easeInOut}, 0);
->>>>>>> css_transform_animations
 	};
 	
 	function goToLeftSlide(slideOut, slideIn){
@@ -110,17 +92,11 @@ var $activeSlide = $(".active"),
 
 	  var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 	    tl
-			.set(slideIn, {left:"-100%",autoAlpha: 1,className: '+=active'})
+			.set(slideIn, {x:"-100%",className: '+=active'})
 			.set(slideOut, { className: '-=active'})
-<<<<<<< HEAD
-			.set(slideOut, {autoAlpha: 0, delay:animator.transitionTime })
-			.to(slideIn, animator.transitionTime, {left: '+=100%',ease:Power2.easeInOut}, 0)
-			.to(slideOut, animator.transitionTime, {left: '+=100%', ease:Power2.easeInOut}, 0);
-=======
 			.to(slideIn.filter(".imageContainer"), animator.transitionTime, {x: '+=100%', opacity: 1,ease:Power2.easeInOut}, 0)
 			.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {x: '+=100%', opacity: 1,ease:Power2.easeInOut}, 0)
 			.to(slideOut, animator.transitionTime, {x: '+=100%', opacity: 0, ease:Power2.easeInOut}, 0);
->>>>>>> css_transform_animations
 	};
 	 	
 	function getSlide(direction, random)
@@ -131,11 +107,6 @@ var $activeSlide = $(".active"),
 	//$randomTimeLine.play();
 	if (!animator.inProgress)
 	  {
-<<<<<<< HEAD
-		 TweenLite.set($(".homeSlide_anim"),  { top:"0"});
-	var slideOut = $('.homeSlide_anim.active'),
-		slideIn = $('.homeSlide_anim');
-=======
 		TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
 		TweenLite.set($(".imageContainer"),  { transform:"none"});
 		var slideOut = $('.homeSlide_anim.active');
@@ -143,7 +114,6 @@ var $activeSlide = $(".active"),
 		var slideIn = $('.homeSlide_anim');
 		var si;
 		var img;
->>>>>>> css_transform_animations
 		
 		if (random)
 			{
