@@ -1,5 +1,6 @@
 body {
   color: #222222;
+
 }
 
 
@@ -7,7 +8,6 @@ body {
 
 .whiteBar
 {
-
 	background-image: url(../img/logo_small.png);
 	background-repeat: no-repeat;
 	background-position: left 48px top 46px;
@@ -18,9 +18,24 @@ body {
 	left:0;
 	top: 0;
 	width: 31.77%;	
-	z-index: 1;
-
+	z-index: 2;
+	visibility: hidden;
+	opacity: 0;
 }
+
+#clickArea
+{
+	position: absolute;
+	width: 143px;
+	height: 50px;
+	left: 48px;
+	top: 46px;
+	cursor: pointer;
+	z-index: 6;
+	display: block;
+	visibility: hidden;
+}
+
 
 
 #menu #button_container
@@ -102,7 +117,8 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 35px;
-	z-index: 2;
+	z-index: 5;
+	cursor: pointer;
 }
 
 
@@ -132,14 +148,14 @@ body {
 
 #menu
 {
-	background-color: rgba(240,240,240, 1);
+	background-color: rgba(240,240,240, 1.0);
 	position: fixed;
 	height: 100%;
 	right: -31.77%;
 	top: 0;
 	width: 31.77%;	
 	transition: right 0.1s ease-out;
-	z-index: 1;
+	z-index: 3;
 	overflow: auto;
 }
 
