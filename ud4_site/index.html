@@ -24,6 +24,7 @@
 	<div class="homeSlide active _logo" case = "0">
 	<div id = "logo_container">
        <svg viewBox="0 0 800 600">
+	   <script type="text/ecmascript" xlink:href="js/vendor/smil_minified/smil.user.js"></script>
 		  <symbol id="s-text">
 			<text text-anchor="middle"
 				  x="50%"
@@ -46,6 +47,7 @@
 		<use xlink:href="#s-text"
 		  class="text-copy"></use>     
 	  </g>
+	
 </svg>
      </div>   
      </div>
@@ -118,8 +120,9 @@
 <div id = "burger_outline"></div>	
 		<svg class = "mainSvg" version="1.0" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">
+	 
 <g transform="translate(0, 0) scale(0.100000,0.100000)">
-<polygon id = "burger_m" points="92.8,187.9 65.9,187.9 37.7,187.9 37.7,169.1 37.7,150.2 73.7,150.2 122.5,150.2 175.0,150.2 224.4,150.2 250.6,150.2 263.7,150.2 286.3,150.2 306.9,150.2 306.9,169.1 306.9,187.9 288.7,187.9 266.9,187.9 230.6,187.9 175.0,187.9 140.3,187.9 110.3,187.9 92.8,187.9"/>
+<polygon id = "burger_m" points="92.8,187.9 65.9,187.9 37.7,187.9 37.7,169.1 37.7,150.2 73.7,150.2 122.5,150.2 175.0,150.2 224.4,150.2 250.6,150.2 263.7,150.2 286.3,150.2 306.9,150.2 306.9,169.1 306.9,187.9 288.7,187.9 266.9,187.9 230.6,187.9 175.0,187.9 140.3,187.9 110.3,187.9 92.8,187.9"></polygon>
  <animate id="toCross" 
     xlink:href="#burger_m"
     attributeName="points"
@@ -127,7 +130,7 @@
     dur="150ms"
     fill="freeze" 
 	begin="indefinite"
-   />
+   ></animate>
    <animate id="toBar" 
     xlink:href="#burger_m"
     attributeName="points"
@@ -135,9 +138,9 @@
     dur="150ms"
     fill="freeze" 
 	begin="indefinite"
-   />
-<path id="burger_up" d="M37.69,261.152v-18.848H172.31h134.614v18.848V280H172.31H37.69V261.152z"/>
-<path id="burger_down" d="M37.69,83.462V64.614H172.31h134.614v18.848v18.848H172.31H37.69V83.462z"/>
+	></animate>
+<path id="burger_up" d="M37.69,261.152v-18.848H172.31h134.614v18.848V280H172.31H37.69V261.152z"></path>
+<path id="burger_down" d="M37.69,83.462V64.614H172.31h134.614v18.848v18.848H172.31H37.69V83.462z"></path>
 	
 </g>
 </svg>
@@ -183,6 +186,7 @@
 	<script src="js/vendor/jquery.event.swipe.js"></script> 
 	<script src="js/vendor/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="js/slider.js"></script>
+	
 </body>
 	
 </html>

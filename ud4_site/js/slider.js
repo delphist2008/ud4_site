@@ -45,6 +45,7 @@ var $activeSlide = $(".active"),
 	  $bcg.toggleClass( "bcg bcg_anim" );
 	  //$(".caseInfoContainer").mCustomScrollbar();
 	  $("#menu").mCustomScrollbar();
+	  $("#menu_checkbox")[0].checked = false; 
 	}
 
 	$(window).load(function(){
@@ -218,10 +219,10 @@ var $activeSlide = $(".active"),
 			var faceTl = new TimelineMax({});
 			$("#toCross")[0].beginElement();
 			faceTl.to(' #burger_up',.08, {
-			  y: "+=300%" 
+			  y: "300%" 
 			});
 			  faceTl.to(' #burger_down',.08, {
-			  y: "-=300%"
+			  y: "-300%"
 			});
 		}
 		else
@@ -229,10 +230,10 @@ var $activeSlide = $(".active"),
 			var faceTl = new TimelineMax({});
 			$("#toBar")[0].beginElement();
 			faceTl.to(' #burger_up',.08, {
-			  y:"-=300%"
+			  transform:"none"
 			});
 			  faceTl.to(' #burger_down',.08, {
-			   y: "+=300%" 
+			    transform:"none"
 			});
 		}
 	});
