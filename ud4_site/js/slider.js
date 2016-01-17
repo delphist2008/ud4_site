@@ -101,12 +101,14 @@ var $activeSlide = $(".active"),
 	 	
 	function getSlide(direction, random)
 	{
+	TweenLite.set($("#clickArea"), {visibility:"visible", delay: animator.transitionTime});
+	TweenLite.to($(".whiteBar"), animator.transitionTime, {visibility:"visible", opacity: 1, delay: animator.transitionTime});
 	$logoTimeline.stop();
 	//$randomTimeLine.play();
 	if (!animator.inProgress)
 	  {
-		 TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
-		 TweenLite.set($(".imageContainer"),  { transform:"none"});
+		TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
+		TweenLite.set($(".imageContainer"),  { transform:"none"});
 		var slideOut = $('.homeSlide_anim.active');
 		var soim = $(".imageContainer[case="+slideOut[0].attributes["case"].value+"]");
 		var slideIn = $('.homeSlide_anim');
@@ -124,7 +126,7 @@ var $activeSlide = $(".active"),
 				if (direction == "right")
 				goToRightSlide(slideOut.add(soim), si);
 				if (direction == "up")
-				goToPrevSlide(slideOut.add(soim), si);
+				goToPreviousSlide(slideOut.add(soim), si);
 				if (direction == "left")
 				goToLeftSlide(slideOut.add(soim), si);
 		}
@@ -196,6 +198,18 @@ var $activeSlide = $(".active"),
 	
 	$( "#up" ).click(function(e){
 		getSlide("down", false)	
+	});
+	
+	$( "#clickArea" ).click(function(e){
+		if (!animator.inProgress)
+		{
+			TweenLite.set($("#clickArea, .whiteBar"), {visibility:"hidden", delay: animator.transitionTime});
+			TweenLite.to($(".whiteBar"), animator.transitionTime, { opacity: 0});
+			var slideOut = $('.homeSlide_anim.active');
+			var soim = $(".imageContainer[case="+slideOut[0].attributes["case"].value+"]");
+			var slideIn = $('.homeSlide_anim._logo');
+			goToNextSlide(slideOut.add(soim), slideIn);
+		}
 	});
 	
 	$( "#burger" ).click(function(e){

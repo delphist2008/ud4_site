@@ -19,13 +19,13 @@ body {
 	top: 0;
 	width: 31.77%;	
 	z-index: 2;
-
+	visibility: hidden;
+	opacity: 0;
 }
 
 #clickArea
 {
 	position: absolute;
-	border: 1px solid red;
 	width: 143px;
 	height: 50px;
 	left: 48px;
@@ -33,12 +33,10 @@ body {
 	cursor: pointer;
 	z-index: 6;
 	display: block;
+	visibility: hidden;
 }
 
-#clickArea:hover
-{
-	background-color: red;
-}
+
 
 #menu #button_container
 {
