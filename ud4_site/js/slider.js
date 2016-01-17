@@ -11,7 +11,7 @@ var $activeSlide = $(".active"),
     $hero = $(".hero"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { getRandomSlide("down");}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
-	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getRandomSlide("down"); $randomTimeLine,play()}});
+	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getRandomSlide("down");}}); 
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
 	animator = {inProgress : false, transitionTime: .35};//.35
 	
@@ -142,19 +142,7 @@ var $activeSlide = $(".active"),
 		var si;
 		var img;
 		
-		if (direction == "down")
-		{
-			
-			if (slideIn.index(slideOut)  <  slideIn.length-1)
-				si = slideOut.nextAll(".homeSlide_anim")[0];
-			else	
-				si = slideIn[1];	
-			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
-			si = $(si).add(img);
-			goToNextSlide(slideOut.add(soim), si);
-		};
-		
-		if (direction == "right")
+		if (direction == "down" || direction == "right" )
 		{
 			if (slideIn.index(slideOut)  <  slideIn.length-1)
 				si = slideOut.nextAll(".homeSlide_anim")[0];
@@ -162,10 +150,13 @@ var $activeSlide = $(".active"),
 				si = slideIn[1];	
 			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
 			si = $(si).add(img);
-			goToRightSlide(slideOut.add(soim), si);
+			if (direction == "down")
+				goToNextSlide(slideOut.add(soim), si);
+			else
+				goToRightSlide(slideOut.add(soim), si);
 		};
 		
-		if (direction == "up")
+		if (direction == "up" || direction == "left")
 		{
 			if (slideIn.index(slideOut)  >  1)
 				si = slideOut.prevAll(".homeSlide_anim")[0];
@@ -173,18 +164,10 @@ var $activeSlide = $(".active"),
 				si =  slideIn[slideIn.length-1];
 			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
 			si = $(si).add(img);
-			goToPreviousSlide(slideOut.add(soim), si);
-		};
-		
-		if (direction == "left")
-		{
-			if (slideIn.index(slideOut)  >  1)
-				si = slideOut.prevAll(".homeSlide_anim")[0];
+			if (direction == "up")
+				goToPreviousSlide(slideOut.add(soim), si);
 			else
-				si =  slideIn[slideIn.length-1];
-			img = $(".imageContainer[case="+si.attributes["case"].value+"]");
-			si = $(si).add(img);
-			goToLeftSlide(slideOut.add(soim), si);
+				goToLeftSlide(slideOut.add(soim), si);
 		};
 	  };
 	};
