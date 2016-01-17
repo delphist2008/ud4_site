@@ -9,10 +9,15 @@ var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
 	$bcg = $(".bcg"),
     $hero = $(".hero"),
-	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { getSlide("down", true);}});
+	$randomTimeLine = new TimelineMax({ repeat:-1, paused:false, onRepeat: function () { getSlide("down", true);}});
 	$randomTimeLine.to($("#nothing"), 8, {width:"100px"});
-	$logoTimeline = new TimelineMax({paused: true, repeat:0, onComplete: function () { getSlide("down", true);}}); 
+	$logoTimeline = new TimelineMax({paused: false, repeat:0, onComplete: function () { getSlide("down", true);}}); 
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
+	TweenLite.set($(".text-copy "), {strokeDasharray:"7% 28%"});
+	$le1 = new TimelineMax({paused: false});
+	$le1.to($(".text-copy "), 3, {strokeDasharray:"1% 87.5%",  strokeDashoffset: "35%", ease:Linear.easeOut });
+	$le1.reverse();
+	$le1.progress(1);
 	animator = {inProgress : false, transitionTime: .35};//.35
 	
 	$("html").mousemove(function(event){
