@@ -3,9 +3,6 @@ body {
 
 }
 
-
-
-
 .whiteBar
 {
 	background-image: url(../img/logo_small.png);
@@ -35,8 +32,6 @@ body {
 	display: block;
 	visibility: hidden;
 }
-
-
 
 #menu #button_container
 {
@@ -104,8 +99,6 @@ body {
 	
 }
 
-
-
 #burger
 {
 	width:	35px;
@@ -151,8 +144,8 @@ position: absolute;
 #menu_checkbox
 {
 	position: fixed;
-	top: -1000px;
-	right: -1000px;
+	top: -2000px;
+	left: -200px;
 }
 
 #menu

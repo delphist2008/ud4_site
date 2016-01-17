@@ -15,8 +15,6 @@ var $activeSlide = $(".active"),
 	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
 	animator = {inProgress : false, transitionTime: .35};//.35
 	
-	
-
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -213,11 +211,14 @@ var $activeSlide = $(".active"),
 		}
 	});
 	
-	$( "#burger" ).click(function(e){
-		if ($("#menu_checkbox:checked").length == 0) 
+	$( "#menu_checkbox" ).change(function(e){
+		{
+		animator.menuAnim = true;		
+		if ($("#menu_checkbox:checked").length == 1) 
 		{
 			var faceTl = new TimelineMax({});
 			$("#toCross")[0].beginElement();
+			
 			faceTl.to(' #burger_up',.08, {
 			  y: "300%" 
 			});
@@ -229,12 +230,14 @@ var $activeSlide = $(".active"),
 		{
 			var faceTl = new TimelineMax({});
 			$("#toBar")[0].beginElement();
+			
 			faceTl.to(' #burger_up',.08, {
 			  transform:"none"
 			});
 			  faceTl.to(' #burger_down',.08, {
 			    transform:"none"
 			});
+		}	
 		}
 	});
 
