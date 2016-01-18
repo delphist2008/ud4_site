@@ -1,6 +1,6 @@
 body {
-  color: #222222;
-
+  color: #222;
+	background-color: #fff;
 }
 
 .whiteBar
@@ -28,7 +28,7 @@ body {
 	left: 48px;
 	top: 46px;
 	cursor: pointer;
-	z-index: 6;
+	z-index: 7;
 	display: block;
 	visibility: hidden;
 }
@@ -109,7 +109,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 35px;
-	z-index: 5;
+	z-index: 6;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -157,7 +157,7 @@ position: absolute;
 	top: 0;
 	width: 31.77%;	
 	transition: right 0.1s ease-out;
-	z-index: 3;
+	z-index: 4;
 	overflow: auto;
 }
 
