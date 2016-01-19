@@ -18,6 +18,7 @@ body {
 	z-index: 2;
 	visibility: hidden;
 	opacity: 0;
+	min-width: 300px;
 }
 
 #clickArea
@@ -99,6 +100,19 @@ body {
 	
 }
 
+
+
+#svg_container
+{
+position: absolute;
+  width: 100%;
+  height: 100%;
+  scale:2;
+ 
+}
+
+
+
 #burger
 {
 	width:	35px;
@@ -114,30 +128,11 @@ body {
 	overflow: hidden;
 }
 
-#svg_container
-{
-position: absolute;
-  width: 100%;
-  height: 100%;
-  scale:2;
- 
-}
-
-
-#burger:hover
-{
-
-}
-
 #burger_outline
 {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(255,255,255,0.75);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 35px;
-	opacity: 0;
 	position:absolute;
 }
 

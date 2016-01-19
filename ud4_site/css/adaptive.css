@@ -1,0 +1,15 @@
+@media all and  (max-height: 600px)  and (max-width: 945px)   {
+  .caseInfoContainer span
+  {
+	background-color: red;
+  }
+}
+.whiteBar
+{
+	min-width: 300px;
+}
+
+.caseInfoContainer
+{
+	min-width: 220px;
+}
