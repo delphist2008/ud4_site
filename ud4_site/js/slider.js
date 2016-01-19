@@ -183,7 +183,7 @@ var $activeSlide = $(".active"),
 	};
 	
 	$( "html" ).mousewheel(function(event){
-		$randomTimeLine.progress(0);
+		$randomTimeLine.restart();
 		if (event.deltaY < 0)
 			getSlide("up", false)
 		else
@@ -193,7 +193,7 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('swiperight', function(e){
 		if (!animator.scrolling)
 		{
-			$randomTimeLine.progress(0);
+			$randomTimeLine.restart();
 		getSlide("left", false)
 		
 		}
@@ -202,7 +202,7 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('swipeleft', function(e){
 		if (!animator.scrolling)
 		{
-			$randomTimeLine.progress(0);
+			$randomTimeLine.restart();
 		getSlide("right", false)
 		}
 	});
@@ -210,7 +210,7 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('swipeup', function(e){
 		if (!animator.scrolling)
 		{
-			$randomTimeLine.progress(0);
+			$randomTimeLine.restart();
 		getSlide("down", false)
 		}
 	});
@@ -218,20 +218,20 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('swipedown', function(e){
 		if (!animator.scrolling)
 		{
-			$randomTimeLine.progress(0);
+			$randomTimeLine.restart();
 		getSlide("up", false)
 		}
 	});
 	
 	$( "#up" ).click(function(e){
-		$randomTimeLine.progress(0);
+		$randomTimeLine.restart();
 		getSlide("down", false)	
 	});
 	
 	$( "#clickArea" ).click(function(e){
 		if (!animator.inProgress)
 		{
-			$randomTimeLine.progress(0);
+			$randomTimeLine.restart();
 			TweenLite.set($("#clickArea, .whiteBar"), {visibility:"hidden", delay: animator.transitionTime});
 			TweenLite.to($(".whiteBar"), animator.transitionTime, { opacity: 0});
 			var slideOut = $('.homeSlide_anim.active');
