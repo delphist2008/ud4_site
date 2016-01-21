@@ -32,10 +32,11 @@ var $activeSlide = $(".active"),
 			
 			TweenLite.to($("#up_outline"), 0.5, { opacity: "0.75"});
 			if ($("#menu_checkbox:checked").length == 0) 
-				TweenLite.to($("#burger_outline"), 0.5, { opacity: "0.75"});
+				TweenLite.to($("#burger"), 0.5, { backgroundColor: "rgba(255,255,255,0.75)"});
 			  clearTimeout($.data(this, 'mouseTimer'));
 			$.data(this, 'mouseTimer', setTimeout(function() {
-				TweenLite.to($("#burger_outline, #up_outline"), 0.5, { opacity: "0"});	
+				TweenLite.to($(" #up_outline"), 0.5, { opacity: "0"});	
+				TweenLite.to($("#burger"), 0.5, { backgroundColor: "rgba(255,255,255,0)"});
 			}, 500));
 		}		
 	});
@@ -122,7 +123,7 @@ var $activeSlide = $(".active"),
 		TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
 		TweenLite.set($(".imageContainer"),  { transform:"none"});
 		var slideOut = $('.homeSlide_anim.active');
-		var soim = $(".imageContainer[case="+slideOut[0].attributes["case"].value+"]");
+		var soim = $(".imageContainer[data-case="+slideOut[0].attributes["data-case"].value+"]");
 		var slideIn = $('.homeSlide_anim');
 		var si;
 		var img;
@@ -131,7 +132,7 @@ var $activeSlide = $(".active"),
 			{
 				si = slideOut.siblings(".homeSlide_anim");
 				si = si[getRandomInt(1, si.length-1)];
-				img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				if (direction == "down")
 				goToNextSlide(slideOut.add(soim), si);
@@ -153,7 +154,7 @@ var $activeSlide = $(".active"),
 				}
 				else	
 					si = slideIn[1];	
-				img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				if (direction == "down")
 					goToNextSlide(slideOut.add(soim), si);
@@ -170,7 +171,7 @@ var $activeSlide = $(".active"),
 				}
 				else
 					si =  slideIn[slideIn.length-1];
-				img = $(".imageContainer[case="+si.attributes["case"].value+"]");
+				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				if (direction == "up")
 					goToPreviousSlide(slideOut.add(soim), si);
@@ -235,7 +236,7 @@ var $activeSlide = $(".active"),
 			TweenLite.set($("#clickArea, .whiteBar"), {visibility:"hidden", delay: animator.transitionTime});
 			TweenLite.to($(".whiteBar"), animator.transitionTime, { opacity: 0});
 			var slideOut = $('.homeSlide_anim.active');
-			var soim = $(".imageContainer[case="+slideOut[0].attributes["case"].value+"]");
+			var soim = $(".imageContainer[data-case="+slideOut[0].attributes["data-case"].value+"]");
 			var slideIn = $('.homeSlide_anim._logo');
 			goToNextSlide(slideOut.add(soim), slideIn);
 		}

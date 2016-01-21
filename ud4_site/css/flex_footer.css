@@ -35,7 +35,7 @@
 	
  }
  
-#receive_a_call #txt
+#receive_a_call .txt
 {
 	text-align:right;
 	width:100%;
@@ -44,14 +44,14 @@
 	font-size: 13px;
 }
 
-#ud4_string #txt
+#ud4_string .txt
 {
 	text-align:left;
 	width:100%;
 	font-size: 13px;
 }
 
-#phone_string #txt
+#phone_string .txt
 {
 	text-align: center;
 	font-size: 13px;

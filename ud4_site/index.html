@@ -12,8 +12,8 @@
 	<!--<link rel="stylesheet" href="css/footer.css" />-->
 	<link rel="stylesheet" href="css/slider.css" />
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-	<link href='css/roboto.css' rel='stylesheet' type='text/css'>
-	<link href='css/opensans.css' rel='stylesheet' type='text/css'>
+	<link href="css/roboto.css" rel="stylesheet" type="text/css">
+	<link href="css/opensans.css" rel="stylesheet" type="text/css">
   </head>
 	<body>
 	<div id = "dim"></div>
@@ -21,7 +21,7 @@
 	<div class="bcg">
     <div class="hero">
 <!--cases-->
-	<div class="homeSlide active _logo" case = "0">
+	<div class="homeSlide active _logo" data-case = "0">
 	<div id = "logo_container">
        <svg viewBox="0 0 800 600">
 	   <script type="text/ecmascript" xlink:href="js/vendor/smil_minified/smil.user.js"></script>
@@ -49,7 +49,7 @@
 </svg>
      </div>   
      </div>
-      <div class="homeSlide" case="1">
+      <div class="homeSlide" data-case="1">
           <div class="caseInfoContainer" >
 		  <div class = "info">
            <h1>Портал BIZ360</h1>
@@ -59,12 +59,12 @@
           
 		  </div>
       </div>
-	  <div class="imageContainer" case="1">
+	  <div class="imageContainer" data-case="1">
           <div  class="slideImg" style="background-image: url(img/phone_ud4_h.jpg);" ></div>
 		   <div  class="slideImg2" style="background-image: url(img/phone_overlay.png);" ></div>
       </div>
 		
-	    <div class="homeSlide" case="2">
+	    <div class="homeSlide" data-case="2">
           <div class="caseInfoContainer">
 		   <div class = "info">
             <h1>Портал BIZ360</h1>
@@ -73,11 +73,11 @@
 			<span>Информационно-аналитический интернет-журнал для предпринимателей сферы малого бизнеса от компании 1С. Проект нацелен на создание качественного контента об эффективных предпринимательских и управленческих практиках, ноу-хау и перспективных бизнес-идеях, о дополнительных точках роста и новых технологиях.</span>
           </div>
       </div>
-	  <div class="imageContainer" case="2">
+	  <div class="imageContainer" data-case="2">
           <div  class="slideImg" style="background-image: url(img/women_ud4_h.jpg);" ></div>
 		  <div  class="slideImg2" style="background-image: url(img/woman_overlay.png);" ></div>
       </div>
-      <div class="homeSlide" case="3">
+      <div class="homeSlide" data-case="3">
           <div class="caseInfoContainer">
 		   <div class = "info">
             <h1>Википедия</h1>
@@ -86,11 +86,11 @@
 			<span>Википедия - свободная общедоступная мультиязычная универсальная интернет-энциклопедия, реализованная на принципах Вики. Владелец сайта — американская некоммерческая организация «Фонд Викимедиа», имеющая 39 региональных представительств. Название энциклопедии образовано от английских слов wiki (вики, технология, лежащая в основе функционирования сайта; в свою очередь заимствовано из гавайского языка, в котором оно имеет значение «быстро») и encyclopedia (энциклопедия).</span>
           </div>
       </div>
-	   <div class="imageContainer" case="3">
+	   <div class="imageContainer" data-case="3">
           <div  class="slideImg" style="background-image: url(img/ud4_ud4_h.jpg);" ></div>
 		  <div  class="slideImg2" style="background-image: url(img/ud4_overlay.png);" ></div>
         </div>
-		<div class="homeSlide" case="4">
+		<div class="homeSlide" data-case="4">
           <div class="caseInfoContainer">
 		   <div class = "info">
             <h1>Котики</h1>
@@ -99,15 +99,15 @@
 			<span>Слайд для тестирования видео на бэкграунде</span>
           </div>
       </div>
-	  <div class="imageContainer" case="4">
-		  <video id="slideMovie" src="img\cat.mp4" autoplay="autoplay" loop="loop"></video>
+	  <div class="imageContainer" data-case="4">
+		  <video id="slideMovie" src="img/cat.mp4" autoplay="autoplay" loop="loop"></video>
       </div>
 	  <div class="whiteBar"></div>
     </div>
   </div>
 		<div id = "up">
 		<div id = "up_outline"></div>
-		<svg version="1.0" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		<svg  id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">
 <g transform="translate(0.000000,0.000000) scale(0.100000,0.100000)">
 	<path d="M253.535,154.692c43.125,44.487,81.289,83.999,84.844,87.905l6.445,6.953l-12.813,13.301l-12.793,13.398l-72.031-74.57
@@ -119,7 +119,6 @@
 		</div>
 		<input  type="checkbox" id = "menu_checkbox" >
 		<label id="burger" for="menu_checkbox">
-		<div id = "burger_outline"></div>	
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve"> 
 <g transform="translate(0, 0) scale(0.100000,0.100000)">
@@ -159,17 +158,17 @@
 		</div>
 			<footer id = "flex-container">
 				<div id="ud4_string" class = "flex-item ">
-					<div id = "txt">
+					<div class = "txt">
 						<p><span>©</span> 2009 ЮДчетыре</p >
 					</div>
 				</div>
 				<div id = "phone_string" class = "flex-item ">
-					<div id = "txt">
+					<div class = "txt">
 						<p  id="time">МSК +3</p><p id = "phone">тел.: +7 (383) 373-02-16</p >
 					</div>
 				</div>
 				<div id="receive_a_call" class = "flex-item ">
-						<div id = "txt">
+						<div class = "txt">
 							<p>Заказать  звонок</p>
 						</div >
 				</div>
