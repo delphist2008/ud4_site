@@ -148,18 +148,20 @@ position: absolute;
 	background-color: rgba(240,240,240, 1.0);
 	position: fixed;
 	height: 100%;
-	right: -31.77%;
+	right: -100%;
 	top: 0;
 	width: 31.77%;	
-	transition: right 0.1s ease-out;
+	transition: right 0.3s ease-in-out;
 	z-index: 4;
 	overflow: auto;
+	min-width: 300px;
+	
 }
 
 #menu_checkbox:checked ~ #menu
 {
 	right: 0;
-	transition: right 0.1s ease-out;
+	transition: right 0.3s ease-in-out;
 }
 
 

@@ -5,13 +5,13 @@
 	color: black;
 	font-family: Roboto;
 	width: 25%;
-	height: 75%;
+	height: 100%;
 	left: 50px;
 	overflow: show;
 	min-width: 220px;
 	margin: auto;
 	position: absolute;
-    top: 20%; 
+    top: 0; 
 }
 
 .caseInfoContainer h1
@@ -19,10 +19,15 @@
 	font-size: 36px;
 	margin-bottom: 10px;
 	margin-left: -2px;
-
+	
 	
 }
 
+
+.info
+{
+	margin-top: 50%;
+}
 
 .caseInfoContainer span
 {
@@ -33,11 +38,16 @@
 .infoCopy
 {
 	position: absolute;
-	height: 75%;
-	bottom:0;
+	height: 100%;
+	top:0;
 	display: none;
+	transform: translateY(50%);
 }
 
+.infoCopy h1
+{
+	margin-top: -18px;
+}
 
 .caseInfoContainer a
 {
@@ -130,11 +140,12 @@
 
 #up
 {
-	width:	35px;
+	width:	45px;
 	height: 35px;
 	position: fixed;
 	top: 45px;
 	right: 50%;
+	transform: translateX(50%);
 	z-index: 6;
 	cursor: pointer;
 	visibility: hidden;
