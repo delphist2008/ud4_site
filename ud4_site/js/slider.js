@@ -72,9 +72,9 @@ var $activeSlide = $(".active"),
 			tl
 				.set(slideIn, {y:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone,},0)
-				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone,},0)
-				.to(slideOut, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone,},0);
+				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power1.easeInOut},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power1.easeInOut},0)
+				.to(slideOut, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Power1.easeInOut},0);
 	};
 
 	function goToRightSlide(slideOut, slideIn){
