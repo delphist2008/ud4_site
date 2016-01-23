@@ -198,7 +198,7 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('move', function(e){
 		var r = (Math.abs(e.distY)/$("html").height());
 		TweenLite.set($("#movebar"), {height:r*100+"%"});
-		//T.seek(r);
+		T.seek(r);
 		
 		//window.alert("blah");
 	});
@@ -208,7 +208,7 @@ var $activeSlide = $(".active"),
 		//TweenLite.set($("#movebar"), {height:r+"%"});
 		//T.seek(r);
 		//if (r>0.5) 
-		//	T.play();
+			T.play();
 		//window.alert("blah");
 	});
 	
