@@ -228,6 +228,9 @@ var $activeSlide = $(".active"),
 		$randomTimeLine.restart();
 		getSlide("down", false)	
 	});
+	$( "#menuCloseArea" ).click(function(e){
+		$("#menu_checkbox:checked").prop('checked', false).trigger("change");;
+	});
 	
 	$( "#clickArea" ).click(function(e){
 		if (!animator.inProgress)
