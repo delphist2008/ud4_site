@@ -42,7 +42,7 @@ var $activeSlide = $(".active"),
 	});
 	
 	function init(){
-		 FastClick.attach(document.body);
+		
 	  //TweenLite.set($homeSlide.not($activeSlide), {opacity: 0});
 	 // TweenLite.set($homeSlide, {z: 0.1});
 	  //TweenLite.set($(".imageContainer").not($(".active")), {opacity: 0});
