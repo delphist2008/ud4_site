@@ -18,7 +18,7 @@ var $activeSlide = $(".active"),
 	$le1.to($(".text-copy "), 3, {strokeDasharray:"1% 87.5%",  strokeDashoffset: "35%", ease:Linear.easeOut });
 	$le1.reverse();
 	$le1.progress(1);
-	animator = {inProgress : false, transitionTime: .85};//.35
+	animator = {inProgress : false, transitionTime: .35};//.35
 	
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
