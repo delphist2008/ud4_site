@@ -34,8 +34,6 @@
 	}
 })(function(jQuery, undefined){
 
-
-		FastClick.attach(document.body);
 	var // Number of pixels a pressed pointer travels before movestart
 	    // event is fired.
 	    threshold = 0,
@@ -85,7 +83,7 @@
 	    	cancel: 'touchend',
 	    	end: 'touchend'
 	    };
-
+ 
 
 	// Constructors
 	

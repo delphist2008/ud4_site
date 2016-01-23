@@ -150,7 +150,7 @@
 	transform: translateX(50%);
 	z-index: 6;
 	cursor: pointer;
-	visibility: hidden;
+	visibility: hidden; 
 }
 
 #up_outline
