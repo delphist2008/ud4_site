@@ -11,8 +11,8 @@ var $activeSlide = $(".active"),
     $hero = $(".hero"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, paused:false, onRepeat: function () { getSlide("down", true);}});
 	$randomTimeLine.to($("nothing"), 8, {width:"100px"});
-	$logoTimeline = new TimelineMax({paused: false, repeat:0, onComplete: function () { getSlide("down", true);}}); 
-	$logoTimeline.to($("#nothing"), 4, {width:"100px"});
+	//$logoTimeline = new TimelineMax({paused: false, repeat:0, onComplete: function () { getSlide("down", true);}}); 
+	//$logoTimeline.to($("#nothing"), 4, {width:"100px"});
 	TweenLite.set($(".text-copy "), {strokeDasharray:"7% 28%"});
 	$le1 = new TimelineMax({paused: false});
 	$le1.to($(".text-copy "), 3, {strokeDasharray:"1% 87.5%",  strokeDashoffset: "35%", ease:Linear.easeOut });
@@ -117,7 +117,7 @@ var $activeSlide = $(".active"),
 	{
 	TweenLite.set($("#clickArea"), {visibility:"visible", delay: animator.transitionTime});
 	TweenLite.to($(".whiteBar"), animator.transitionTime, {visibility:"visible", opacity: 1, delay: animator.transitionTime});
-	$logoTimeline.stop();
+	//$logoTimeline.stop();
 	
 	//$randomTimeLine.play();
 	if (!animator.inProgress)
@@ -155,7 +155,7 @@ var $activeSlide = $(".active"),
 					si = si[0];
 				}
 				else	
-					si = slideIn[1];	
+					si = slideIn[0];	
 				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				if (direction == "down")
@@ -237,13 +237,13 @@ var $activeSlide = $(".active"),
 	$( "#clickArea" ).click(function(e){
 		if (!animator.inProgress)
 		{
-			$randomTimeLine.restart();
+			/*$randomTimeLine.restart();
 			TweenLite.set($("#clickArea, .whiteBar"), {visibility:"hidden", delay: animator.transitionTime});
 			TweenLite.to($(".whiteBar"), animator.transitionTime, { opacity: 0});
 			var slideOut = $('.homeSlide_anim.active');
 			var soim = $(".imageContainer[data-case="+slideOut[0].attributes["data-case"].value+"]");
 			var slideIn = $('.homeSlide_anim._logo');
-			goToNextSlide(slideOut.add(soim), slideIn);
+			goToNextSlide(slideOut.add(soim), slideIn);*/
 		}
 	});
 	
