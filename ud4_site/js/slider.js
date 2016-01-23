@@ -197,17 +197,25 @@ var $activeSlide = $(".active"),
 	
 	$( "html" ).on('move', function(e){
 		var r = (Math.abs(e.distY)/$("html").height());
-		TweenLite.set($("#movebar"), {height:r+"%"});
+		TweenLite.set($("#movebar"), {height:r*100+"%"});
 		T.seek(r);
 		
+		//window.alert("blah");
+	});
+	
+	$( "html" ).on('moveend', function(e){
+		var r = (Math.abs(e.distY)/$("html").height());
+		//TweenLite.set($("#movebar"), {height:r+"%"});
+		//T.seek(r);
+		//if (r>0.5) 
+			T.play();
 		//window.alert("blah");
 	});
 	
 	$( "html" ).on('movestart', function(e){
 		if (!animator.inProgress)
 		{
-		TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
-		TweenLite.set($(".imageContainer"),  { transform:"none"});
+
 		var slideOut = $('.homeSlide_anim.active');
 		var soim = $(".imageContainer[data-case="+slideOut[0].attributes["data-case"].value+"]");
 		var slideIn = $('.homeSlide_anim');
@@ -226,11 +234,13 @@ var $activeSlide = $(".active"),
 		 var hsa = si.filter(".homeSlide_anim");
 		T = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;}});
 			T
+				.set($(".imageContainer"),  { transform:"none"})
+				.set($(".homeSlide_anim"),  { transform:"none"})
 				.set(si, {y:"100%", className: '+=active'})
 				.set(slideOut.add(soim), {className: '-=active'})
-				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true},0)
-				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true},0)
-				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true},0);
+				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone},0)
+				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone},0);
 		}
 	});
 		
