@@ -12,7 +12,7 @@
 	margin: auto;
 	position: absolute;
     top: 0; 
-	border: 1px solid red;
+	
 }
 
 .caseInfoContainer h1
@@ -89,7 +89,7 @@
 	height: 100%;
 	background-size: 100% 100%;
 	z-index: 3;
-	border: 1px solid red;
+
 }
 
 .homeSlide {
@@ -160,4 +160,15 @@
 	background-color: rgba(255,255,255,0.75);
 	position:absolute;
 	
+}
+
+#movebar
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 10px;
+	height: 100%;
+	background-color: blue;
+	z-index: 100;
 }
