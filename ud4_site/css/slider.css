@@ -12,6 +12,7 @@
 	margin: auto;
 	position: absolute;
     top: 0; 
+	border: 1px solid red;
 }
 
 .caseInfoContainer h1
@@ -88,6 +89,7 @@
 	height: 100%;
 	background-size: 100% 100%;
 	z-index: 3;
+	border: 1px solid red;
 }
 
 .homeSlide {
