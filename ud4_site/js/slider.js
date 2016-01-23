@@ -42,8 +42,8 @@ var $activeSlide = $(".active"),
 	});
 	
 	function init(){
-	  TweenLite.set($homeSlide.not($activeSlide), {opacity: 0});
-	  TweenLite.set($(".imageContainer").not($(".active")), {opacity: 0});
+	  //TweenLite.set($homeSlide.not($activeSlide), {opacity: 0});
+	  //TweenLite.set($(".imageContainer").not($(".active")), {opacity: 0});
 	  TweenLite.set($("#up"), {visibility: "visible"});
 	  $homeSlide.toggleClass( "homeSlide homeSlide_anim" );
 	  $bcg.toggleClass( "bcg bcg_anim" );
@@ -61,16 +61,18 @@ var $activeSlide = $(".active"),
 
 	function goToNextSlide(slideOut, slideIn){
 		animator.inProgress = true;
-		 var a = $(slideIn.filter(".homeSlide_anim")).find("a");
-		 $(a).css("margin-bottom","300px");
-		 TweenLite.to(a,animator.transitionTime*2, {marginBottom:"15", ease:Power4.easeInOut});	
+		// var a = $(slideIn.filter(".homeSlide_anim")).find("a");
+		// $(a).css("margin-bottom","300px");
+		//  TweenLite.to(a,animator.transitionTime*2, {marginBottom:"15", ease:Power4.easeInOut});	
+		 var ic = slideIn.filter(".imageContainer");
+		 var hsa = slideIn.filter(".homeSlide_anim");
 		var tl = new TimelineMax({onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(slideIn, {y:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(slideIn.filter(".imageContainer"), animator.transitionTime, {y: '-=100%',opacity: 1, ease:Power1.easeInOut}, 0)
-				.to(slideIn.filter(".homeSlide_anim"), animator.transitionTime*1.35, {y: '-=100%',opacity: 1, ease:Power2.easeInOut}, 0)
-				.to(slideOut, animator.transitionTime, {y: '-=100%',opacity: 0, ease:Power2.easeInOut}, 0);
+				.to(ic, animator.transitionTime, {y: '-=100%', ease:Power1.easeInOut},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%', ease:Power2.easeInOut},0)
+				.to(slideOut, animator.transitionTime, {y: '-=100%', ease:Power2.easeInOut},0);
 	};
 
 	function goToRightSlide(slideOut, slideIn){
