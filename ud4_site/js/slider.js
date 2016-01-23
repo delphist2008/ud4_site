@@ -9,7 +9,7 @@ var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
 	$bcg = $(".bcg"),
     $hero = $(".hero"),
-	$randomTimeLine = new TimelineMax({ repeat:-1, paused:false, onRepeat: function () { getSlide("down", true);}});
+	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { /*getSlide("down", true);*/}});
 	$randomTimeLine.to($("nothing"), 8, {width:"100px"});
 	//$logoTimeline = new TimelineMax({paused: false, repeat:0, onComplete: function () { getSlide("down", true);}}); 
 	//$logoTimeline.to($("#nothing"), 4, {width:"100px"});
@@ -19,7 +19,7 @@ var $activeSlide = $(".active"),
 	$le1.reverse();
 	$le1.progress(1);
 	animator = {inProgress : false, transitionTime: .35};//.35
-	
+	var T;
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -196,8 +196,42 @@ var $activeSlide = $(".active"),
 	});*/
 	
 	$( "html" ).on('move', function(e){
-		TweenLite.set($("#movebar"), {height:Math.abs(e.distY)+"px"});
+		var r = (Math.abs(e.distY)/$("html").height());
+		TweenLite.set($("#movebar"), {height:r+"%"});
+		T.seek(r);
+		
 		//window.alert("blah");
+	});
+	
+	$( "html" ).on('movestart', function(e){
+		if (!animator.inProgress)
+		{
+		TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
+		TweenLite.set($(".imageContainer"),  { transform:"none"});
+		var slideOut = $('.homeSlide_anim.active');
+		var soim = $(".imageContainer[data-case="+slideOut[0].attributes["data-case"].value+"]");
+		var slideIn = $('.homeSlide_anim');
+		var si;
+		var img;
+		if (slideIn.index(slideOut)  <  slideIn.length-1)
+				{
+					si = slideOut.nextAll(".homeSlide_anim");
+					si = si[0];
+				}
+				else	
+					si = slideIn[0];	
+				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
+				si = $(si).add(img);
+		 var ic = si.filter(".imageContainer");
+		 var hsa = si.filter(".homeSlide_anim");
+		T = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;}});
+			T
+				.set(si, {y:"100%", className: '+=active'})
+				.set(slideOut.add(soim), {className: '-=active'})
+				.to(ic, animator.transitionTime, {y: '-=100%', /*z: 0.1,  rotationZ: 0.01,force3D:true, */ease:Power1.easeInOut},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',/*z: 0.1,  rotationZ: 0.01,force3D:true,*/ ease:Power1.easeInOut},0)
+				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',/*z: 0.05,  rotationZ: 0.01,force3D:true, */ease:Power1.easeInOut},0);
+		}
 	});
 		
 	/*$( "html" ).on('swiperight', function(e){
