@@ -18,7 +18,7 @@ var $activeSlide = $(".active"),
 	$le1.to($(".text-copy "), 3, {strokeDasharray:"1% 87.5%",  strokeDashoffset: "35%", ease:Linear.easeOut });
 	$le1.reverse();
 	$le1.progress(1);
-	animator = {inProgress : false, transitionTime: .35};//.35
+	animator = {inProgress : false, transitionTime: .85};//.35
 	
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
@@ -68,13 +68,13 @@ var $activeSlide = $(".active"),
 		//  TweenLite.to(a,animator.transitionTime*2, {marginBottom:"15", ease:Power4.easeInOut});	
 		 var ic = slideIn.filter(".imageContainer");
 		 var hsa = slideIn.filter(".homeSlide_anim");
-		var tl = new TimelineMax({force3D:true, onComplete: function (){animator.inProgress = false;}});
+		var tl = new TimelineMax({ onComplete: function (){animator.inProgress = false;}});
 			tl
 				.set(slideIn, {y:"100%", className: '+=active'})
 				.set(slideOut, {className: '-=active'})
-				.to(ic, animator.transitionTime, {y: '-=100%', ease:Power1.easeInOut},0)
-				.to(hsa, animator.transitionTime*1.35, {y: '-=100%', ease:Power2.easeInOut},0)
-				.to(slideOut, animator.transitionTime, {y: '-=100%', ease:Power2.easeInOut},0);
+				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone,},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone,},0)
+				.to(slideOut, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone,},0);
 	};
 
 	function goToRightSlide(slideOut, slideIn){
