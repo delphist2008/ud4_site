@@ -204,6 +204,10 @@ var $activeSlide = $(".active"),
 		//window.alert("blah");
 	});
 	
+	$( "html" ).on('touchmove', function(e){
+		TweenLite.set($("#movebar"), {backgroundColor:"white"});
+	});
+	
 	$( "html" ).on('moveend', function(e){
 		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
 		//var r = (Math.abs(e.distY)/$("html").height());
