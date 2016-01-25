@@ -235,9 +235,9 @@ var $activeSlide = $(".active"),
 				.set($(".homeSlide_anim"),  { transform:"none"})
 				.set(si, {y:"100%", className: '+=active'})
 				.set(slideOut.add(soim), {className: '-=active'})
-				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Power1.easeIn},0)
-				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power1.easeIn},0)
-				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Power1.easeIn},0);
+				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Power0.easeIn},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power0.easeIn},0)
+				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Power0.easeIn},0);
 		}
 	});
 	

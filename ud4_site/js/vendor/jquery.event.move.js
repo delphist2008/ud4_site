@@ -60,7 +60,7 @@
 	    		function(fn, element){
 	    			return window.setTimeout(function(){
 	    				fn();
-	    			}, 25);
+	    			}, 10);
 	    		}
 	    	);
 	    })(),
