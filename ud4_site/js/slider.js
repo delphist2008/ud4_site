@@ -207,14 +207,18 @@ var $activeSlide = $(".active"),
 	
 	
 	$( "html" ).on('touchstart', function(e){
+		if (!animator.inProgress)
+		{
 		_Y = e.originalEvent.touches[0].pageY;
 		e.preventDefault();
+		}
 	});
 	
 	$( "html" ).on('touchmove', function(e){
 		//TweenLite.set($("#movebar"), {backgroundColor:"white"});
+		e.preventDefault();
 			var r = (Math.abs(e.originalEvent.touches[0].pageY - _Y)/$("html").height());
-			 if (T!=null)  T.seek(r);
+			 if (T!=null)  T.progress(r);
 	});
 	
 	$( "html" ).on('touchend', function(e){
