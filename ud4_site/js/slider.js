@@ -204,6 +204,7 @@ var $activeSlide = $(".active"),
 	});
 	
 	$( "html" ).on('moveend', function(e){
+		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
 		//var r = (Math.abs(e.distY)/$("html").height());
 		//TweenLite.set($("#movebar"), {height:r+"%"});
 		//T.seek(r);
@@ -245,7 +246,7 @@ var $activeSlide = $(".active"),
 	
 	
 	$( "html" ).on('movestart', function(e){
-		
+		TweenLite.set($("#movebar"), {backgroundColor:"red"});
 	});
 		
 	/*$( "html" ).on('swiperight', function(e){
