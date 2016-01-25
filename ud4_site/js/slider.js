@@ -19,7 +19,7 @@ var $activeSlide = $(".active"),
 	$le1.reverse();
 	$le1.progress(1);
 	animator = {inProgress : false, transitionTime: 0.8};//.35
-	var T;
+	var T =null;
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -197,22 +197,20 @@ var $activeSlide = $(".active"),
 	
 	$( "html" ).on('move', function(e){
 		var r = (Math.abs(e.distY)/$("html").height());
-		TweenLite.set($("#movebar"), {height:r*100+"%"});
-		T.progress(r);
+		//TweenLite.set($("#movebar"), {height:r*100+"%"});
+		 if (T!=null)  T.progress(r);
 		
 		//window.alert("blah");
 	});
 	
 	$( "html" ).on('moveend', function(e){
-		var r = (Math.abs(e.distY)/$("html").height());
+		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
+		//var r = (Math.abs(e.distY)/$("html").height());
 		//TweenLite.set($("#movebar"), {height:r+"%"});
 		//T.seek(r);
 		//if (r>0.5) 
-		 	T.play();
+		 	 if (T!=null) T.play();
 		//window.alert("blah");
-	});
-	
-	$( "html" ).on('movestart', function(e){
 		if (!animator.inProgress)
 		{
 
@@ -238,10 +236,17 @@ var $activeSlide = $(".active"),
 				.set($(".homeSlide_anim"),  { transform:"none"})
 				.set(si, {y:"100%", className: '+=active'})
 				.set(slideOut.add(soim), {className: '-=active'})
-				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone},0)
-				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone},0)
-				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Linear.easeNone},0);
+				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Power0.easeIn},0)
+				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power0.easeIn},0)
+				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Power0.easeIn},0);
 		}
+	});
+	
+	
+	
+	
+	$( "html" ).on('movestart', function(e){
+		TweenLite.set($("#movebar"), {backgroundColor:"red"});
 	});
 		
 	/*$( "html" ).on('swiperight', function(e){
