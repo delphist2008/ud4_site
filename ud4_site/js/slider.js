@@ -215,7 +215,7 @@ var $activeSlide = $(".active"),
 	});*/
 	
 	
-	$( "html" ).on('touchmove', function(e){
+	/*$( "html" ).on('touchmove', function(e){
 		e.PreventDefault();
 		var r = (Math.abs(e.originalEvent.touches[0].pageY-_Y)/$("html").height())*100;
 		TweenLite.set($("#movebar"), {height:r+"%"});
@@ -252,7 +252,7 @@ var $activeSlide = $(".active"),
 				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power1.easeIn},0)
 				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Power1.easeIn},0);
 		}
-	});
+	});*/
 	
 	
 	//$( "html" ).on('movestart', function(e){
