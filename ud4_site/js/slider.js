@@ -19,7 +19,6 @@ var $activeSlide = $(".active"),
 	$le1.reverse();
 	$le1.progress(1);
 	animator = {inProgress : false, transitionTime: 0.8};//.35
-	var _Y;
 	var T;
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
@@ -196,33 +195,27 @@ var $activeSlide = $(".active"),
 			getSlide("down", false);
 	});*/
 	
-/*	$( "html" ).on('move', function(e){
+	$( "html" ).on('move', function(e){
 		var r = (Math.abs(e.distY)/$("html").height());
 		TweenLite.set($("#movebar"), {height:r*100+"%"});
 		T.seek(r);
 		
 		//window.alert("blah");
-	});*/
+	});
 	
-	
-	/*$( "html" ).on('moveend', function(e){
+	$( "html" ).on('moveend', function(e){
 		var r = (Math.abs(e.distY)/$("html").height());
 		//TweenLite.set($("#movebar"), {height:r+"%"});
 		//T.seek(r);
 		//if (r>0.5) 
 		 	T.play();
 		//window.alert("blah");
-	});*/
-	
-	
-	/*$( "html" ).on('touchmove', function(e){
-		e.PreventDefault();
-		var r = (Math.abs(e.originalEvent.touches[0].pageY-_Y)/$("html").height())*100;
-		TweenLite.set($("#movebar"), {height:r+"%"});
 	});
-	$( "html" ).on('touchstart', function(e){
-		e.PreventDefault();
-		_Y = e.originalEvent.touches[0].pageY;
+	
+	
+	
+	
+	$( "html" ).on('movestart', function(e){
 		if (!animator.inProgress)
 		{
 
@@ -252,12 +245,7 @@ var $activeSlide = $(".active"),
 				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Power1.easeIn},0)
 				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Power1.easeIn},0);
 		}
-	});*/
-	
-	
-	//$( "html" ).on('movestart', function(e){
-		
-//	});
+	});
 		
 	/*$( "html" ).on('swiperight', function(e){
 		if (!animator.scrolling)
