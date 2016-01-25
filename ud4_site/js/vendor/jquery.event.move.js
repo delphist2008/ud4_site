@@ -417,8 +417,8 @@
 		
 		// Average the velocity of the last few events using a decay
 		// curve to even out spurious jumps in values.
-		event.velocityX = 0.3 * event.velocityX + 0.7 * event.deltaX / time;
-		event.velocityY = 0.3 * event.velocityY + 0.7 * event.deltaY / time;
+		//event.velocityX = 0.3 * event.velocityX + 0.7 * event.deltaX / time;
+		//event.velocityY = 0.3 * event.velocityY + 0.7 * event.deltaY / time;
 		event.pageX =  touch.pageX;
 		event.pageY =  touch.pageY;
 	}
