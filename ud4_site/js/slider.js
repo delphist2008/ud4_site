@@ -217,13 +217,13 @@ var $activeSlide = $(".active"),
 			 if (T!=null)  T.seek(r);
 	});
 	
-	$( "html" ).on('moveend', function(e){
+	$( "html" ).on('touchend', function(e){
 		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
 		//var r = (Math.abs(e.distY)/$("html").height());
 		//TweenLite.set($("#movebar"), {height:r+"%"});
 		//T.seek(r);
 		//if (r>0.5) 
-		 	 if (T!=null) T.play();
+		 if (T!=null) T.play();
 		//window.alert("blah");
 		if (!animator.inProgress)
 		{
@@ -259,9 +259,11 @@ var $activeSlide = $(".active"),
 	
 	
 	
-	$( "html" ).on('movestart', function(e){
+	
+	
+	/*$( "html" ).on('movestart', function(e){
 	//	TweenLite.set($("#movebar"), {backgroundColor:"red"});
-	});
+	});*/
 		
 	/*$( "html" ).on('swiperight', function(e){
 		if (!animator.scrolling)
