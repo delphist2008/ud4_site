@@ -247,7 +247,7 @@ var $activeSlide = $(".active"),
 	
 	
 	$( "html" ).on('movestart', function(e){
-		TweenLite.set($("#movebar"), {backgroundColor:"red"});
+	//	TweenLite.set($("#movebar"), {backgroundColor:"red"});
 	});
 		
 	/*$( "html" ).on('swiperight', function(e){
