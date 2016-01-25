@@ -216,10 +216,12 @@ var $activeSlide = $(".active"),
 	
 	
 	$( "html" ).on('touchmove', function(e){
+		e.PreventDefault();
 		var r = (Math.abs(e.originalEvent.touches[0].pageY-_Y)/$("html").height())*100;
 		TweenLite.set($("#movebar"), {height:r+"%"});
 	});
 	$( "html" ).on('touchstart', function(e){
+		e.PreventDefault();
 		_Y = e.originalEvent.touches[0].pageY;
 		if (!animator.inProgress)
 		{
