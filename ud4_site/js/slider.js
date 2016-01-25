@@ -20,6 +20,7 @@ var $activeSlide = $(".active"),
 	$le1.progress(1);
 	animator = {inProgress : false, transitionTime: 0.8};//.35
 	var T =null;
+	var _Y;
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -195,17 +196,25 @@ var $activeSlide = $(".active"),
 			getSlide("down", false);
 	});*/
 	
-	$( "html" ).on('move', function(e){
+	/*$( "html" ).on('move', function(e){
 		TweenLite.set($("#movebar"), {backgroundColor:"yellow"});
 		var r = (Math.abs(e.distY)/$("html").height());
 		//TweenLite.set($("#movebar"), {height:r*100+"%"});
-		 if (T!=null)  T.seek(r);
+		
 		
 		//window.alert("blah");
+	});*/
+	
+	
+	$( "html" ).on('touchstart', function(e){
+		_Y = e.originalEvent.touches[0].pageY;
+		e.preventDefault();
 	});
 	
 	$( "html" ).on('touchmove', function(e){
-		TweenLite.set($("#movebar"), {backgroundColor:"white"});
+		//TweenLite.set($("#movebar"), {backgroundColor:"white"});
+			var r = (Math.abs(e.originalEvent.touches[0].pageY - _Y)/$("html").height());
+			 if (T!=null)  T.seek(r);
 	});
 	
 	$( "html" ).on('moveend', function(e){
