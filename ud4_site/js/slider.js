@@ -5,6 +5,15 @@ function getRandomInt(min, max)
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+function tlcb () {
+	
+	if (!animator.swiping)
+	{
+		animator.inProgress = false; 
+		clearTs();
+	}
+};
 var $activeSlide = $(".active"),
     $homeSlide = $(".homeSlide"),
 	$bcg = $(".bcg"),
@@ -18,15 +27,16 @@ var $activeSlide = $(".active"),
 	$le1.to($(".text-copy "), 3, {strokeDasharray:"1% 87.5%",  strokeDashoffset: "35%", ease:Linear.easeOut });
 	$le1.reverse();
 	$le1.progress(1);
-	animator = {inProgress : false, transitionTime: .35};//.35
-	 $Tup = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;  clearTs(); }});
-	 $Tdown=new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; clearTs() }});
-	 $Tleft=new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; clearTs(); }});
-	 $Tright=new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; clearTs(); }});
+	animator = {inProgress : false, transitionTime: .35, swiping: false};//.35
+	 $Tup = new TimelineMax({ paused:true, onReverseComplete : function (){tlcb (); }, onComplete: function (){ tlcb ();}});
+	 $Tdown=new TimelineMax({ paused:true, onReverseComplete : function (){tlcb (); }, onComplete: function (){ tlcb ();}});
+	 $Tleft=new TimelineMax({ paused:true, onReverseComplete : function (){tlcb (); }, onComplete: function (){ tlcb ();}});
+	 $Tright=new TimelineMax({ paused:true, onReverseComplete : function (){tlcb (); }, onComplete: function (){ tlcb ();}});
 	var _Y;
 	var _X;
 	var dir = null;
 	var sens = 0.1;
+	prgSens = 0.3;
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -51,8 +61,9 @@ var $activeSlide = $(".active"),
 	function init(){
 		 FastClick.attach(document.body);
 	  TweenLite.set($homeSlide.not($activeSlide), {y:"-100%"});
+	   TweenLite.set($(".imageContainer").not($(".active")), {y:"-100%"});
 	 // TweenLite.set($homeSlide, {z: 0.1});
-	  TweenLite.set($(".imageContainer").not($(".active")), {y:"-100%"});
+	 
 	  TweenLite.set($("#up"), {visibility: "visible"});
 	  $homeSlide.toggleClass( "homeSlide homeSlide_anim" );
 	  $bcg.toggleClass( "bcg bcg_anim" );
@@ -241,7 +252,7 @@ var $activeSlide = $(".active"),
 				{
 				
 					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;}});
-				$Tdown.pause();
+				
 				$Tdown
 					.set($(".imageContainer"),  { transform:"none"})
 					.set($(".homeSlide_anim"),  { transform:"none"})
@@ -257,7 +268,7 @@ var $activeSlide = $(".active"),
 				else
 				{
 					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; }});
-				$Tright.pause();
+				
 				$Tright
 					.set($(".imageContainer"),  { transform:"none"})
 					.set($(".homeSlide_anim"),  { transform:"none"})
@@ -300,7 +311,7 @@ var $activeSlide = $(".active"),
 				if (direction == "up")
 				{
 				
-					$Tup.pause();
+					
 				$Tup
 					.set($(".imageContainer"),  { transform:"none"})
 					.set($(".homeSlide_anim"),  { transform:"none"})
@@ -316,7 +327,7 @@ var $activeSlide = $(".active"),
 				else
 				{
 					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; }});
-				$Tleft.pause();
+				
 				$Tleft
 					.set($(".imageContainer"),  { transform:"none"})
 					.set($(".homeSlide_anim"),  { transform:"none"})
@@ -341,6 +352,7 @@ var $activeSlide = $(".active"),
 		
 		dir = null;
 		e.preventDefault();
+		animator.swiping = true;
 		}
 	});
 	
@@ -394,25 +406,49 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('touchend', function(e){
 			if (dir=='horiz')
 			{
-				if ($Tleft.progress()>$Tright.progress())
+				if ($Tleft.progress()>$Tright.progress() & $Tleft.progress()>prgSens)
+				{
 					$Tleft.play();
+					$Tright.pause();
+				}
 				else
+				{
+					if ($Tright.progress() > prgSens)
 					$Tright.play();
+				else
+					{
+						$Tright.reverse()
+					}
+				}
 			}
 			if (dir=='vert')
 			{
-				if ($Tup.progress()>$Tdown.progress())
+				if ($Tup.progress()>$Tdown.progress() & $Tup.progress()>prgSens)
+				{
 					$Tup.play();
+					$Tdown.pause();
+				}
 				else
+				{
+					if ($Tdown.progress()>prgSens)
 					$Tdown.play();
+					else
+					{
+						$Tdown.reverse();
+					}
+				}
 			}
 			dir = null;
+			animator.swiping = false;
 	});
 	
 	
 	function clearTs() 
 	{
-		
+		$Tdown.stop();
+		$Tright.stop();
+		$Tup.stop();
+		$Tleft.stop();
 		$Tup.clear();
 		$Tdown.clear();
 		$Tleft.clear();
