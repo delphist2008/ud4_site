@@ -352,25 +352,50 @@ var $activeSlide = $(".active"),
 		e.preventDefault();
 			var dy = (e.originalEvent.touches[0].pageY - _Y)/$("html").height();
 			var dx = (e.originalEvent.touches[0].pageX - _X)/$("html").width();
-			if (Math.abs(dx) > Math.abs(dy) & dx > sens) dir = 'right';
+			if (dir==null)
+			{
+				if (Math.abs(dx) > Math.abs(dy) & Math.abs(dx)>sens) dir = 'horiz';
+				if (Math.abs(dx) <= Math.abs(dy) & Math.abs(dy)>sens) dir = 'vert';
+			}
+			if (dir =='horiz')
+			{
+				if ( dx > 0)
+				{
+					$Tright.progress(Math.abs(dx));
+					$Tleft.progress(0);
+				}
+				else
+				{
+					$Tleft.progress(Math.abs(dx));
+					$Tright.progress(0);
+				}
+			}
 			else
-			if (Math.abs(dx) > Math.abs(dy) & dx < -sens) dir = 'left';
-			else
-			if (Math.abs(dx) < Math.abs(dy) & dy < -sens) dir = 'up';
-			else
-			if (Math.abs(dx) < Math.abs(dy) & dy > sens) dir = 'down';
+				if (dir =='vert')
+				{
+					if ( dy > 0) 
+					{
+						$Tdown.progress(Math.abs(dy));
+						$Tup.progress(0);
+					}
+					else
+					{
+						$Tup.progress(Math.abs(dy));
+						$Tdown.progress(0);
+					};
+				}
+			//
+			//if (dir == 'left')
 			
-			if (dir == 'left')
-				$Tleft.progress(Math.abs(dx));
 				//TweenLite.set($("#movebar"), {height: '10px', width: '100px', marginLeft:'10px'});
-			if (dir == 'right')
-				$Tright.progress(dx);
+		//	if (dir == 'right')
+			//	$Tright.progress(dx);
 				//TweenLite.set($("#movebar"), {height: '10px', width: '80px', marginLeft: '0px'});
-			if (dir == 'down')
-				$Tdown.progress(dy);
+		//	if (dir == 'down')
+			//	$Tdown.progress(dy);
 				//TweenLite.set($("#movebar"), {height: '100px', width: '10px', marginTop:'10px'});
-			if (dir == 'up')
-				$Tup.progress(Math.abs(dy));
+		//	if (dir == 'up')
+				//$Tup.progress(Math.abs(dy));
 				//TweenLite.set($("#movebar"), {height: '80px', width: '10px', marginTop: '0px'});
 			//TweenLite.set($("#movebar"), {width: dx *100 +'%', height: dy *100 + '%'});
 			// if (T!=null)  T.progress(r);
@@ -380,7 +405,8 @@ var $activeSlide = $(".active"),
 	
 	
 	$( "html" ).on('touchend', function(e){
-		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
+		
+		//TweenLite.set($("#movebar"), {backgroundColor:"blue"});
 		//var r = (Math.abs(e.distY)/$("html").height());
 		//TweenLite.set($("#movebar"), {height:r+"%"});
 		//T.seek(r);
@@ -394,11 +420,27 @@ var $activeSlide = $(".active"),
 		else
 		if (dir == 'up') $Tup.play();
 		else
+			
 		if (dir == 'left') Tleft.play();*/
-			if (dir == 'up') $Tup.play();
-			if (dir == 'down') $Tdown.play();
-			if (dir == 'left') $Tleft.play();
-			if (dir == 'right') $Tright.play();
+			//if (dir == 'up') $Tup.play();
+		//	if (dir == 'down') $Tdown.play();
+			//if (dir == 'left') $Tleft.play();
+			//if (dir == 'right') $Tright.play();
+			if (dir=='horiz')
+			{
+				if ($Tleft.progress()>$Tright.progress())
+					$Tleft.play();
+				else
+					$Tright.play();
+			}
+			if (dir=='vert')
+			{
+				if ($Tup.progress()>$Tdown.progress())
+					$Tup.play();
+				else
+					$Tdown.play();
+			}
+			dir = null;
 	});
 	
 	
