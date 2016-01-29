@@ -18,9 +18,15 @@ var $activeSlide = $(".active"),
 	$le1.to($(".text-copy "), 3, {strokeDasharray:"1% 87.5%",  strokeDashoffset: "35%", ease:Linear.easeOut });
 	$le1.reverse();
 	$le1.progress(1);
-	animator = {inProgress : false, transitionTime: 1};//.35
-	var T =null;
+	animator = {inProgress : false, transitionTime: .35};//.35
+	 $Tup = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;  clearTs(); }});
+	 $Tdown=new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; clearTs() }});
+	 $Tleft=new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; clearTs(); }});
+	 $Tright=new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; clearTs(); }});
 	var _Y;
+	var _X;
+	var dir = null;
+	var sens = 0.1;
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -56,6 +62,12 @@ var $activeSlide = $(".active"),
 		  $(this).find(".info").clone().toggleClass("info infoCopy").appendTo( $(this).find(".caseInfoContainer"));
 	  });
 	  fixAdaptive();
+	  clearTs() ;
+	//  getTl('up');
+	  //Tdown= getTl('down');
+	 // Tleft = getTl('left');
+	  //Tright= getTl('right');
+	  
 	}
 
 	$(window).load(function(){
@@ -205,39 +217,68 @@ var $activeSlide = $(".active"),
 		//window.alert("blah");
 	});*/
 	
-	
-	$( "html" ).on('touchstart', function(e){
-		if (!animator.inProgress)
-		{
-		_Y = e.originalEvent.touches[0].pageY;
-		e.preventDefault();
-		}
-	});
-	
-	$( "html" ).on('touchmove', function(e){
-		//TweenLite.set($("#movebar"), {backgroundColor:"white"});
-		e.preventDefault();
-			var r = (Math.abs(e.originalEvent.touches[0].pageY - _Y)/$("html").height());
-			 if (T!=null)  T.progress(r);
-	});
-	
-	$( "html" ).on('touchend', function(e){
-		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
-		//var r = (Math.abs(e.distY)/$("html").height());
-		//TweenLite.set($("#movebar"), {height:r+"%"});
-		//T.seek(r);
-		//if (r>0.5) 
-		 if (T!=null) T.play();
-		//window.alert("blah");
-		if (!animator.inProgress)
-		{
-
+	function getTl(direction) {
 		var slideOut = $('.homeSlide_anim.active');
 		var soim = $(".imageContainer[data-case="+slideOut[0].attributes["data-case"].value+"]");
 		var slideIn = $('.homeSlide_anim');
 		var si;
 		var img;
-		if (slideIn.index(slideOut)  <  slideIn.length-1)
+		
+		if (direction == "down" || direction == "right" )
+			{
+				
+				
+				if (slideIn.index(slideOut)  >  0)
+				{
+					si = slideOut.prevAll(".homeSlide_anim");
+					si = si[0];
+				}
+				else
+					si =  slideIn[slideIn.length-1];
+				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
+				si = $(si).add(img);
+				var ic = si.filter(".imageContainer");
+				var hsa = si.filter(".homeSlide_anim");
+				
+				if (direction == "down")
+				{
+				
+					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;}});
+				$Tdown.pause();
+				$Tdown
+					.set($(".imageContainer"),  { transform:"none"})
+					.set($(".homeSlide_anim"),  { transform:"none"})
+					.set(si, {y:"-100%", className: '+=active'})
+					.set(slideOut.add(soim), {className: '-=active'})
+					.to(ic, animator.transitionTime, {y: '+=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(hsa, animator.transitionTime*1.35, {y: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.to(slideOut.add(soim), animator.transitionTime, {y: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					
+					//return Tl;
+				
+				}
+				else
+				{
+					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; }});
+				$Tright.pause();
+				$Tright
+					.set($(".imageContainer"),  { transform:"none"})
+					.set($(".homeSlide_anim"),  { transform:"none"})
+					.set(si, {x:"-100%", className: '+=active'})
+					.set(slideOut.add(soim), {className: '-=active'})
+					.to(ic, animator.transitionTime, {x: '+=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(hsa, animator.transitionTime*1.35, {x: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.to(slideOut.add(soim), animator.transitionTime, {x: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					
+					
+				}
+				
+			};
+			
+			if (direction == "up" || direction == "left")
+			{
+				
+				if (slideIn.index(slideOut)  <  slideIn.length-1)
 				{
 					si = slideOut.nextAll(".homeSlide_anim");
 					si = si[0];
@@ -246,22 +287,141 @@ var $activeSlide = $(".active"),
 					si = slideIn[0];	
 				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
-		 var ic = si.filter(".imageContainer");
-		 var hsa = si.filter(".homeSlide_anim");
-		T = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;}});
-			T
-				.set($(".imageContainer"),  { transform:"none"})
-				.set($(".homeSlide_anim"),  { transform:"none"})
-				.set(si, {y:"100%", className: '+=active'})
-				.set(slideOut.add(soim), {className: '-=active'})
-				.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
-				.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-				.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+				var ic = si.filter(".imageContainer");
+				var hsa = si.filter(".homeSlide_anim");
+				/*if (slideIn.index(slideOut)  >  1)
+				{
+					si = slideOut.prevAll(".homeSlide_anim");
+					si = si[0];
+				}
+				else
+					si =  slideIn[slideIn.length-1];
+				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
+				si = $(si).add(img);
+				var ic = si.filter(".imageContainer");
+				var hsa = si.filter(".homeSlide_anim");*/
+				if (direction == "up")
+				{
+				
+					$Tup.pause();
+				$Tup
+					.set($(".imageContainer"),  { transform:"none"})
+					.set($(".homeSlide_anim"),  { transform:"none"})
+					.set(si, {y:"100%", className: '+=active'})
+					.set(slideOut.add(soim), {className: '-=active'})
+					.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.to(slideOut.add(soim), animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					
+					
+				
+				}
+				else
+				{
+					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; }});
+				$Tleft.pause();
+				$Tleft
+					.set($(".imageContainer"),  { transform:"none"})
+					.set($(".homeSlide_anim"),  { transform:"none"})
+					.set(si, {x:"100%", className: '+=active'})
+					.set(slideOut.add(soim), {className: '-=active'})
+					.to(ic, animator.transitionTime, {x: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(hsa, animator.transitionTime*1.35, {x: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.to(slideOut.add(soim), animator.transitionTime, {x: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					
+					
+				}
+				
+			};
+			
+	};
+	
+	$( "html" ).on('touchstart', function(e){
+		if (!animator.inProgress)
+		{
+		_Y = e.originalEvent.touches[0].pageY;
+		_X = e.originalEvent.touches[0].pageX;
+		
+		dir = null;
+		e.preventDefault();
 		}
+	});
+	
+	$( "html" ).on('touchmove', function(e){
+		//TweenLite.set($("#movebar"), {backgroundColor:"white"});
+		e.preventDefault();
+			var dy = (e.originalEvent.touches[0].pageY - _Y)/$("html").height();
+			var dx = (e.originalEvent.touches[0].pageX - _X)/$("html").width();
+			if (Math.abs(dx) > Math.abs(dy) & dx > sens) dir = 'right';
+			else
+			if (Math.abs(dx) > Math.abs(dy) & dx < -sens) dir = 'left';
+			else
+			if (Math.abs(dx) < Math.abs(dy) & dy < -sens) dir = 'up';
+			else
+			if (Math.abs(dx) < Math.abs(dy) & dy > sens) dir = 'down';
+			
+			if (dir == 'left')
+				$Tleft.progress(Math.abs(dx));
+				//TweenLite.set($("#movebar"), {height: '10px', width: '100px', marginLeft:'10px'});
+			if (dir == 'right')
+				$Tright.progress(dx);
+				//TweenLite.set($("#movebar"), {height: '10px', width: '80px', marginLeft: '0px'});
+			if (dir == 'down')
+				$Tdown.progress(dy);
+				//TweenLite.set($("#movebar"), {height: '100px', width: '10px', marginTop:'10px'});
+			if (dir == 'up')
+				$Tup.progress(Math.abs(dy));
+				//TweenLite.set($("#movebar"), {height: '80px', width: '10px', marginTop: '0px'});
+			//TweenLite.set($("#movebar"), {width: dx *100 +'%', height: dy *100 + '%'});
+			// if (T!=null)  T.progress(r);
 	});
 	
 	
 	
+	
+	$( "html" ).on('touchend', function(e){
+		TweenLite.set($("#movebar"), {backgroundColor:"blue"});
+		//var r = (Math.abs(e.distY)/$("html").height());
+		//TweenLite.set($("#movebar"), {height:r+"%"});
+		//T.seek(r);
+		//if (r>0.5) 
+		// if (T!=null) T.play();
+	
+		//	T = getTl('down');
+		/*if (dir == 'down') Tdown.play();
+		else
+		if (dir == 'right') Tright.play();
+		else
+		if (dir == 'up') $Tup.play();
+		else
+		if (dir == 'left') Tleft.play();*/
+			if (dir == 'up') $Tup.play();
+			if (dir == 'down') $Tdown.play();
+			if (dir == 'left') $Tleft.play();
+			if (dir == 'right') $Tright.play();
+	});
+	
+	
+	function clearTs() 
+	{
+		
+		$Tup.clear();
+		$Tdown.clear();
+		$Tleft.clear();
+		$Tright.clear();
+		getTl('up');
+		getTl('down');
+		getTl('left');
+		getTl('right');
+		/*$Tup = getTl('up');
+	  Tdown= getTl('down');
+	  Tleft = getTl('left');
+	  Tright= getTl('right');*/
+	 // $Tup.clear();
+	// TweenLite.set($(".imageContainer"),  { transform:"none"});
+	//	 TweenLite.set($(".homeSlide_anim"),  { transform:"none"})
+	 // $Tup = getTl('up');
+	}
 	
 	
 	
