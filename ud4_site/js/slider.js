@@ -1,5 +1,5 @@
 (function($) {
-
+//TODO: раз уже есть таймлайны для всех сторон - нужно их и использовать для переходов везде, в том числе по колесу и кнопкам.
 function getRandomInt(min, max)
 {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -34,9 +34,9 @@ var $activeSlide = $(".active"),
 	 $Tright=new TimelineMax({ paused:true, onReverseComplete : function (){tlcb (); }, onComplete: function (){ tlcb ();}});
 	var _Y;
 	var _X;
-	var dir = null;
-	var sens = 0.1;
-	prgSens = 0.3;
+	var dir = null;//двигаем по горизонтали или вертикали или не двигаем
+	 sens = 0.1; //насколько надо сдвинуть, чтобы определилась ось
+	prgSens = 0.3; //насколько сильно сдвинуть, чтобы оторвать от края
 	$("html").mousemove(function(event){
 		if (!animator.inProgress)
 		{
@@ -404,31 +404,42 @@ var $activeSlide = $(".active"),
 	
 	
 	$( "html" ).on('touchend', function(e){
+		animator.swiping = false;
 			if (dir=='horiz')
 			{
-				if ($Tleft.progress()>$Tright.progress() & $Tleft.progress()>prgSens)
+				if ($Tleft.progress()>$Tright.progress() )
 				{
+					if ($Tleft.progress()>prgSens)
 					$Tleft.play();
-					$Tright.pause();
+					else
+					{
+						$Tleft.reverse();
+					}
 				}
 				else
+				if ($Tleft.progress()<$Tright.progress() )
 				{
-					if ($Tright.progress() > prgSens)
+					if ($Tright.progress()>prgSens)
 					$Tright.play();
-				else
+					else
 					{
-						$Tright.reverse()
+						$Tright.reverse();
 					}
 				}
 			}
 			if (dir=='vert')
 			{
-				if ($Tup.progress()>$Tdown.progress() & $Tup.progress()>prgSens)
+				if ($Tup.progress()>$Tdown.progress() )
 				{
+					if ($Tup.progress()>prgSens)
 					$Tup.play();
-					$Tdown.pause();
+					else
+					{
+						$Tup.reverse();
+					}
 				}
 				else
+				if ($Tup.progress()<$Tdown.progress() )
 				{
 					if ($Tdown.progress()>prgSens)
 					$Tdown.play();
@@ -439,7 +450,7 @@ var $activeSlide = $(".active"),
 				}
 			}
 			dir = null;
-			animator.swiping = false;
+			
 	});
 	
 	
@@ -458,10 +469,6 @@ var $activeSlide = $(".active"),
 		getTl('left');
 		getTl('right');
 	}
-	
-	
-	
-	
 	
 	$( "#up" ).click(function(e){
 		$randomTimeLine.restart();
