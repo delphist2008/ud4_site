@@ -24,8 +24,6 @@ html
 	top: 0;
 	width: 31.77%;	
 	z-index: 2;
-	visibility: hidden;
-	opacity: 0;
 	min-width: 300px;
 }
 
