@@ -62,7 +62,7 @@ var $activeSlide = $(".active"),
 		 FastClick.attach(document.body);
 	  TweenLite.set($homeSlide.not($activeSlide), {y:"-100%"});
 	   TweenLite.set($(".imageContainer").not($(".active")), {y:"-100%"});
-	 // TweenLite.set($homeSlide, {z: 0.1});
+	
 	 
 	  TweenLite.set($("#up"), {visibility: "visible"});
 	  $homeSlide.toggleClass( "homeSlide homeSlide_anim" );
@@ -70,7 +70,7 @@ var $activeSlide = $(".active"),
 	  $("#menu").mCustomScrollbar();
 	  $("#menu_checkbox")[0].checked = false; 
 	  $(".homeSlide_anim").each(function( i ) {
-		  $(this).find(".info").clone().toggleClass("info infoCopy").appendTo( $(this).find(".caseInfoContainer"));
+		  $(this).find(".caseInfoContainer").clone().find("span").remove().end().toggleClass("full small").appendTo( $(this));
 	  });
 	  fixAdaptive();
 	  clearTs() ;
@@ -216,14 +216,7 @@ var $activeSlide = $(".active"),
 			getSlide("down", false);
 	});*/
 	
-	/*$( "html" ).on('move', function(e){
-		TweenLite.set($("#movebar"), {backgroundColor:"yellow"});
-		var r = (Math.abs(e.distY)/$("html").height());
-		//TweenLite.set($("#movebar"), {height:r*100+"%"});
-		
-		
-		//window.alert("blah");
-	});*/
+	
 	
 	function getTl(direction) {
 		var slideOut = $('.homeSlide_anim.active');
@@ -251,7 +244,7 @@ var $activeSlide = $(".active"),
 				if (direction == "down")
 				{
 				
-					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false;}});
+				
 				
 				$Tdown
 					.set($(".imageContainer"),  { transform:"none"})
@@ -262,12 +255,12 @@ var $activeSlide = $(".active"),
 					.to(hsa, animator.transitionTime*1.35, {y: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.to(slideOut.add(soim), animator.transitionTime, {y: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
 					
-					//return Tl;
+					
 				
 				}
 				else
 				{
-					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; }});
+					
 				
 				$Tright
 					.set($(".imageContainer"),  { transform:"none"})
@@ -297,17 +290,7 @@ var $activeSlide = $(".active"),
 				si = $(si).add(img);
 				var ic = si.filter(".imageContainer");
 				var hsa = si.filter(".homeSlide_anim");
-				/*if (slideIn.index(slideOut)  >  1)
-				{
-					si = slideOut.prevAll(".homeSlide_anim");
-					si = si[0];
-				}
-				else
-					si =  slideIn[slideIn.length-1];
-				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
-				si = $(si).add(img);
-				var ic = si.filter(".imageContainer");
-				var hsa = si.filter(".homeSlide_anim");*/
+				
 				if (direction == "up")
 				{
 				
@@ -326,7 +309,7 @@ var $activeSlide = $(".active"),
 				}
 				else
 				{
-					//Tl = new TimelineMax({ paused:true, onComplete: function (){animator.inProgress = false; }});
+				
 				
 				$Tleft
 					.set($(".imageContainer"),  { transform:"none"})
@@ -357,7 +340,7 @@ var $activeSlide = $(".active"),
 	});
 	
 	$( "html" ).on('touchmove', function(e){
-		//TweenLite.set($("#movebar"), {backgroundColor:"white"});
+		
 		e.preventDefault();
 			var dy = (e.originalEvent.touches[0].pageY - _Y)/$("html").height();
 			var dx = (e.originalEvent.touches[0].pageX - _X)/$("html").width();
@@ -525,20 +508,17 @@ var $activeSlide = $(".active"),
 	  var width = $( window ).width();
 		var height = $( window ).height();
 		var footHeight = $("#flex-container").height();
-		 $(".caseInfoContainer").children("span").each(function( i ) {
+		 $(".caseInfoWrap").children("span").each(function( i ) {
 		
 			if ( ($(this).height()+ $(this).offset().top) + footHeight >  height) 
 			{
-				$(this).css("visibility", "hidden");
-				$(this).siblings(".infoCopy").css("display", "block");
-				$(this).siblings(".infoCopy").css("visibility", "visible");
-				$(this).siblings(".info").css("visibility", "hidden");
+				$(this).closest(".full").css("visibility", "hidden");
+				$(this).closest(".full").siblings(".small").css("visibility", "visible");
 			}
 			else
 			{
-				$(this).css("visibility", "visible");
-				$(this).siblings(".infoCopy").css("display", "none");
-				$(this).siblings(".info").css("visibility", "visible");
+				$(this).closest(".full").css("visibility", "visible");
+					$(this).closest(".full").siblings(".small").css("visibility", "hidden");
 			}
 		 });
 	};
