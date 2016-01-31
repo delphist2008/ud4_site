@@ -231,7 +231,8 @@ var $activeSlide = $(".active"),
 					.to(hsa, animator.transitionTime*1.35, {y: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut,z: 0.1,  rotationZ: 0.01,force3D:true},0)
 					.to(so, animator.transitionTime, {y: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.set(si,  { className: '+=active'});
+					.set(si,  { className: '+=active'})
+					.set(so_ic_2, {y: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn});
 				}
 				else
 				{
@@ -247,7 +248,8 @@ var $activeSlide = $(".active"),
 					.to(ic_2, animator.transitionTime, {x: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(so_ic_2, animator.transitionTime, {x: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {x: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.to(so, animator.transitionTime, {x: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					.to(so, animator.transitionTime, {x: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.set(so_ic_2, {x: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn});
 				}
 				
 			};
@@ -286,7 +288,8 @@ var $activeSlide = $(".active"),
 					.to(so_ic_2, animator.transitionTime, {y: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut,z: 0.1,  rotationZ: 0.01,force3D:true},0)
 					.to(so, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.set(si,  { className: '+=active'});
+					.set(si,  { className: '+=active'})
+					.set(so_ic_2, {y: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn});
 				}
 				else
 				{
@@ -302,7 +305,8 @@ var $activeSlide = $(".active"),
 					.to(ic_2, animator.transitionTime, {x: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(so_ic_2, animator.transitionTime, {x: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {x: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.to(so, animator.transitionTime, {x: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					.to(so, animator.transitionTime, {x: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.set(so_ic_2, {x: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn});
 				}
 			};
 	};
