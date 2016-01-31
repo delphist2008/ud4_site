@@ -19,7 +19,7 @@ var $activeSlide = $(".active"),
 	$bcg = $(".bcg"),
     $hero = $(".hero"),
 	$randomTimeLine = new TimelineMax({ repeat:-1, paused:true, onRepeat: function () { getSlide("down", true);}});
-	$randomTimeLine.to($("nothing"), 80, {width:"100px"});
+	$randomTimeLine.to($("nothing"), 8, {width:"100px"});
 	//$logoTimeline = new TimelineMax({paused: false, repeat:0, onComplete: function () { getSlide("down", true);}}); 
 	//$logoTimeline.to($("#nothing"), 4, {width:"100px"});
 	TweenLite.set($(".text-copy "), {strokeDasharray:"7% 28%"});
@@ -87,11 +87,8 @@ var $activeSlide = $(".active"),
 		 var ic = slideIn.filter(".imageContainer");
 		 var hsa = slideIn.filter(".homeSlide_anim");
 		 
-		 $(".homeSlide_anim").css("opacity","0");
+		$(".homeSlide_anim").css("opacity","0");
 		$(".imageContainer").css("opacity","0");
-		
-				
-				
 				
 		var tl = new TimelineMax({ onComplete: function (){animator.inProgress = false;}});
 			tl
@@ -161,11 +158,7 @@ var $activeSlide = $(".active"),
 				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				var so = slideOut.add(soim);
-				
-				
-				
 					goToNextSlide(so, si);
-				
 			};
 			
 			if (direction == "up")
@@ -180,10 +173,7 @@ var $activeSlide = $(".active"),
 				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				var so = slideOut.add(soim);
-			
-				
-					goToPreviousSlide(so, si);
-				
+				goToPreviousSlide(so, si);
 			};
 		  }
 	  };
@@ -221,30 +211,27 @@ var $activeSlide = $(".active"),
 				img = $(".imageContainer[data-case="+si.attributes["data-case"].value+"]");
 				si = $(si).add(img);
 				var ic = si.filter(".imageContainer");
+				var ic_2 = $(ic).find(".slideImg2");
+				var so_ic_2 = $(so).find(".slideImg2");
 				var hsa = si.filter(".homeSlide_anim");
 				
 				if (direction == "down")
 				{
-				
-				
-				
-					
 				$Tdown
 					
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					
 					.set(si, {y:"-100%"})
 					.set(a, {marginBottom:"300px"})
-					
+					.set(ic_2, {y: "-=20%"})
 					.set(so, {className: '-=active'})
-					
 					.to(ic, animator.transitionTime, {y: '+=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(ic_2, animator.transitionTime, {y: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(so_ic_2, animator.transitionTime, {y: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {y: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut},0)
+					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut,z: 0.1,  rotationZ: 0.01,force3D:true},0)
 					.to(so, animator.transitionTime, {y: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.set(si,  { className: '+=active'});
-					
 				}
 				else
 				{
@@ -252,11 +239,13 @@ var $activeSlide = $(".active"),
 					
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					
 					.set(si, {x:"-100%"})
+					.set(ic_2, {x: "-=20%"})
 					.set(si,  {delay:animator.transitionTime, className: '+=active'})
 					.set(so, {className: '-=active'})
 					.to(ic, animator.transitionTime, {x: '+=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(ic_2, animator.transitionTime, {x: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(so_ic_2, animator.transitionTime, {x: '+=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {x: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.to(so, animator.transitionTime, {x: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
 				}
@@ -276,6 +265,8 @@ var $activeSlide = $(".active"),
 				si = $(si).add(img);
 				var ic = si.filter(".imageContainer");
 				var hsa = si.filter(".homeSlide_anim");
+				var ic_2 = $(ic).find(".slideImg2");
+				var so_ic_2 = $(so).find(".slideImg2");
 				
 				
 			
@@ -285,14 +276,15 @@ var $activeSlide = $(".active"),
 				
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					
 					.set(si, {y:"100%"})
+					.set(ic_2, {y: "+=20%"})
 					.set(a, {marginBottom:"300px"})
 					.set(so, {className: '-=active'})
-					
 					.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut},0)
+					.to(ic_2, animator.transitionTime, {y: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(so_ic_2, animator.transitionTime, {y: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut,z: 0.1,  rotationZ: 0.01,force3D:true},0)
 					.to(so, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.set(si,  { className: '+=active'});
 				}
@@ -302,11 +294,13 @@ var $activeSlide = $(".active"),
 					
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					
 					.set(si, {x:"100%"})
+					.set(ic_2, {x: "+=20%"})
 					.set(slideOut.add(soim), {className: '-=active'})
 					.set(si,  {delay:animator.transitionTime, className: '+=active'})
 					.to(ic, animator.transitionTime, {x: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(ic_2, animator.transitionTime, {x: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
+					.to(so_ic_2, animator.transitionTime, {x: '-=20%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {x: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.to(so, animator.transitionTime, {x: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
 				}
@@ -316,8 +310,6 @@ var $activeSlide = $(".active"),
 	$( "html" ).on('touchstart', function(e){
 		if (!animator.inProgress)
 		{
-			
-		
 		_Y = e.originalEvent.touches[0].pageY;
 		_X = e.originalEvent.touches[0].pageX;
 		$randomTimeLine.restart();
