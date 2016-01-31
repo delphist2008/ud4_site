@@ -230,30 +230,31 @@ var $activeSlide = $(".active"),
 				
 					
 				$Tdown
-					.set($(".homeSlide_anim"), {opacity:"0"})
-					.set($(".imageContainer"), {opacity:"0"})
+					
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					.set($(".imageContainer"),  { transform:"none"})
-					.set($(".homeSlide_anim"),  { transform:"none"})
-					.set(si, {y:"-100%", className: '+=active'})
-					.set(so, {className: '-=active'})
+					
+					.set(si, {y:"-100%"})
 					.set(a, {marginBottom:"300px"})
+					
+					.set(so, {className: '-=active'})
+					
 					.to(ic, animator.transitionTime, {y: '+=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {y: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut},0)
 					.to(so, animator.transitionTime, {y: '+=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
-					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut},0);
+					.set(si,  { className: '+=active'});
+					
 				}
 				else
 				{
 				$Tright
-					.set($(".homeSlide_anim"), {opacity:"0"})
-					.set($(".imageContainer"), {opacity:"0"})
+					
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					.set($(".imageContainer"),  { transform:"none"})
-					.set($(".homeSlide_anim"),  { transform:"none"})
-					.set(si, {x:"-100%", className: '+=active'})
+					
+					.set(si, {x:"-100%"})
+					.set(si,  {delay:animator.transitionTime, className: '+=active'})
 					.set(so, {className: '-=active'})
 					.to(ic, animator.transitionTime, {x: '+=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {x: '+=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
@@ -281,31 +282,30 @@ var $activeSlide = $(".active"),
 				if (direction == "up")
 				{
 				$Tup
-					.set($(".homeSlide_anim"), {opacity:"0"})
-					.set($(".imageContainer"), {opacity:"0"})
+				
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					.set($(".imageContainer"),  { transform:"none"})
-					.set($(".homeSlide_anim"),  { transform:"none"})
-					.set(si, {y:"100%", className: '+=active'})
-					.set(so, {className: '-=active'})
+					
+					.set(si, {y:"100%"})
 					.set(a, {marginBottom:"300px"})
+					.set(so, {className: '-=active'})
+					
 					.to(ic, animator.transitionTime, {y: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {y: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.to(a,animator.transitionTime*2, {marginBottom:"15px", ease:Power4.easeInOut},0)
-					.to(so, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
+					.to(so, animator.transitionTime, {y: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
+					.set(si,  { className: '+=active'});
 				}
 				else
 				{
 				$Tleft
-					.set($(".homeSlide_anim"), {opacity:"0"})
-					.set($(".imageContainer"), {opacity:"0"})
+					
 					.set($(si), {opacity: "1"})
 					.set($(so), {opacity: "1"})
-					.set($(".imageContainer"),  { transform:"none"})
-					.set($(".homeSlide_anim"),  { transform:"none"})
-					.set(si, {x:"100%", className: '+=active'})
+					
+					.set(si, {x:"100%"})
 					.set(slideOut.add(soim), {className: '-=active'})
+					.set(si,  {delay:animator.transitionTime, className: '+=active'})
 					.to(ic, animator.transitionTime, {x: '-=100%', z: 0.1,  rotationZ: 0.01,force3D:true,  ease:Sine.easeIn},0)
 					.to(hsa, animator.transitionTime*1.35, {x: '-=100%',z: 0.1,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0)
 					.to(so, animator.transitionTime, {x: '-=100%',z: 0.05,  rotationZ: 0.01,force3D:true, ease:Sine.easeIn},0);
@@ -336,19 +336,25 @@ var $activeSlide = $(".active"),
 			{
 				if (Math.abs(dx) > Math.abs(dy) & Math.abs(dx)>sens) dir = 'horiz';
 				if (Math.abs(dx) <= Math.abs(dy) & Math.abs(dy)>sens) dir = 'vert';
+				TweenLite.set($(".homeSlide_anim"), {opacity:"0"});
+			TweenLite.set($(".imageContainer"), {opacity:"0"});
+			TweenLite.set($(".homeSlide_anim.active"), {opacity:"1"});
+			TweenLite.set($(".imageContainer.active"), {opacity:"1"});
+			TweenLite.set($(".imageContainer"),  { transform:"none"});
+					TweenLite.set($(".homeSlide_anim"),  { transform:"none"});
 			}
 			if (dir =='horiz')
 			{
 				if ( dx > 0)
 				{
 					$Tleft.progress(0);
-					$Tright.progress(Math.abs(dx));
+					$Tright.progress(dx);
 					
 				}
 				else
 				{
 					$Tright.progress(0);
-					$Tleft.progress(Math.abs(dx));
+					$Tleft.progress(-dx);
 				}
 			}
 			else
@@ -357,14 +363,15 @@ var $activeSlide = $(".active"),
 					if ( dy > 0) 
 					{
 						$Tup.progress(0);
-						$Tdown.progress(Math.abs(dy));
+						$Tdown.progress(dy);
 					}
-					else
+					else 
 					{
 						$Tdown.progress(0);
-						$Tup.progress(Math.abs(dy));
+						$Tup.progress(-dy);
 						
-					};
+					}
+					
 				}
 	});
 	
